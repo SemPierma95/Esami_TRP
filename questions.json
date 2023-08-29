@@ -1,1 +1,153 @@
-[{"question": "Dove sono stati scoperti i neuroni specchio?", "hints": ["F5p si trova nel banco posteriore del solco arcuato", " F5a si trova pi\u00f9 ventralmente sempre nel labbro", " l'area F5c \u00e8 detta convessit\u00e0 e si trova al confine con F4"]}, {"question": "Che differenza c'\u00e8 tra neuroni che codificano lo scopo e neuroni che codificano il tipo di atto in premotoria?", "hints": ["Nel primo esperimento il neurone spara sia che la scimmia esegua una presa con la mano destra o sinistra", " i neuroni specifici per il tipo di atto motorio codificano se quella che sta avvenendo \u00e8 una presa di precisione o di potenza. Sono indifferenti rispetto alla mano ma non rispetto al tipo di presa"]}, {"question": "Come si svolgevano i primi studi sui neuroni specchio? Da quanti neuroni si registrava?", "hints": ["Si inseriva un elettrodo che poteva captare il segnale anche di 3 o 4 neuroni", " la differente risposta era legata alla distanza. Si andava poi ad isolare il singolo neurone e si escludeva con una buona approssimazione il contributo degli altri neuroni"]}, {"question": "Quale \u00e8 l'attivit\u00e0 dei neuroni a riposo?", "hints": ["Dipende", " ci sono neuroni che hanno una scarica spontanea nulla o quasi nulla", " altri invece che hanno una scarica spontanea alta. Per quel che riguarda i neuroni mirror si sono trovati neuroni che all'osservazione aumentavano la loro frequenza di scarica", " altri neuroni con una frequenza spontanea alta che si inibivano all'osservazione di azioni"]}, {"question": "Come era il video che \u00e8 stato mostrato all'inizio sui neuroni specchio?", "hints": ["La scimmia osservava un osservato che piazzava un pezzo di cibo su un contenitore", " poi la scimmia afferrava il cibo. Tra un momento e l'altro c'\u00e8 una pausa", " quando viene presentato il cibo. Questa pausa \u00e8 importante perch\u00e8 esclude che la risposta del neurone mirror iniziale sia una preparazione motoria (altrimenti avrebbe scaricato fino alla fine dell'azione)"]}, {"question": "Cosa puoi dirmi dell'esperimento sui neuroni dei neuroni che si inibiscono all'osservazione?", "hints": ["E' una tipologia di neuroni evidenziata gi\u00e0 dai primi studi. Il neurone a differenza di quando si eccita", " in questo caso si inibisce", " ossia riduce la sua frequenza di scarica", " sia quando osserva l'azione dello sperimentatore", " sia quando afferra il cibo. Importante: c'era una condizione in cui il pezzo di cibo veniva coperto da un bicchierino", " per escludere che la ridotta attivazione in osservazione fosse legata alla mano dello sperimentatore che copriva il cibo", " in questa condizione il neurone non modifica la sua frequenza di scarica quando il cibo viene coperto dal bicchierino."]}, {"question": "Cosa stavano cercando quando hanno trovato i neuroni specchio?", "hints": ["Stavano studiando se i neuroni dell'area F5 avessero una scarica che fosse legata alla cinematica del movimento. Venivano quindi utilizzati oggetti e cibi di varia natura e valenza sia per compiti di osservazione che di esecuzione. Ad esempio veniva preso un pezzo di cibo", " posato su un supporto e poi dato alla scimmia che doveva afferrarlo. Durante questi compiti si \u00e8 visto che i neuroni di F5 rispondevano anche durante l'osservazione di atti motori finalizzati"]}, {"question": "Quali controlli sono stati necessari per lo studio dei mirror e si trovano nello studio di Rizzolatti e Gallese del 1996?", "hints": ["Sono stati fatti i seguenti controlli: 1) presentazione dell'oggetto/cibo per evitare che la risposta visiva fosse di neuroni canonici 2) presentare solo la mano per valutare se non fosse solamente la mano ad attivare il neurone 3) presentazione di una simil-pantomima eseguita con un utensile e non con la mano 4) in esecuzione compito visivo eseguito al buoi. Per escludere che la risposta non fosse motoria ma fosse visiva. Importante: in tutti i controlli il neurone non risponde", " visto che il neurone risponde per l'azione della mano con l'oggetto", " ma non per la mano e non per l'oggetto allora quello che resta \u00e8 l'atto motorio in s\u00e8", " ossia il suo scopo. Per quel che riguarda la pantomima \u00e8 una simil pantomima fatta con un utensile", " nella realt\u00e0 osservazioni ed esperimenti successivi hanno dimostrato che il neurone mirror risponde anche all'utilizzo di strumenti dopo una fase di training o comunque alla fine degli esperimenti dove vede l'utensile come un prolungamento del braccio dello sperimentatore"]}, {"question": "Parlami dell'esperimento in cui si usava come azione la prensione di un oggetto con il dito indice", "hints": ["Nell'esperimento il soggetto doveva prendere un pezzo di cibo dentro ad un piccolo buco con solo l'indice", " Quando si usa l'indice il neurone risponde", " quando si usa una pantomima", " quindi solo l'indice senza il cibo il neurone non risponde", " quando si fa lo stesso gesto con un cacciavite il neurone non risponde.Importante: nei primi studi sui mirror sia la pantomima che la semipantomima fatta con uno strumento non generavano la risposta del neurone."]}, {"question": "Quali sono gli atti motori di mano del repertorio motorio della scimmia? ", "hints": ["Nella scimmia sono stati categorizzati 5 atti motori:\n- Afferrare\n- Manipolare\n- Tenere\n- Piazzare\n- Interazione tra due mani\nNell'uomo gli atti di mano non sono molti di pi\u00f9. Ci sono atti che possono essere eseguiti tramite strumenti. Inoltre c'\u00e8 la presa di precisione tipica di quando dobbiamo tenere una penna in mano per scrivere. Ma la scimmia ha un  atto simile quando deve tenere in mano delle piccole bacchette."]}, {"question": "Oltre alla codifica dello scopo, quali altre variabili possono essere codificate dai neuroni mirror?", "hints": ["Sappiamo che l'ingresso che determina l'input dei neuroni mirror \u00e8 diverso", " possono essere informazioni di tipo motorio", " visivo", " o di altra natura. Gli aspetti studiati che determinano una modulazione della risposta dei neuroni mirror sono:\n- la preferenza per la direzione dell'atto motorio (da destra a sinistra o viceversa)\n- La preferenza manuale (se mano destra o sinistra)", " ricorda l'imitazione speculare dei bambini\n- Il punto di vista", " quindi se l'azione \u00e8 svolta da una prospettiva egocentrica", " a 90\u00b0 o 180\u00b0\n- Se l'azione svolta \u00e8 nello spazio peripersonale o extrapersonale", " per la met\u00e0 \u00e8 una risposta determinata da una distanza operativa", " per met\u00e0 da una distanza metrica. Inoltre la risposta \u00e8 graduale", " per i peripersonali se prendiamo 37 cm come distanza che delimita lo spazio per ed extra", " a 28 e 24.5 cm troviamo risposte pi\u00f9 forti (pi\u00f9 forte a 28cm)", " anche per lo spazio extrapersonale abbiamo una gradualit\u00e0", " con la risposta che aumenta all'aumentare della distanza\n- l'oggetto che viene visto afferrare", " se \u00e8 un cibo (pi\u00f9 o meno preferito) oppure se \u00e8 un oggetto. Anche rispetto ad una associazione tra un oggetto associato ad un reward e un oggetto non associato ad un reward\n- l'intenzione dell'agente (sia che sia la scimmia", " sia che sia l'osservatore)"]}, {"question": "Cosa vuol dire che un neurone mirror ha una scarica preferenziale per la direzione dell'atto?", "hints": ["Significa che alcuni neuroni mirror presentano una scarica differenziale se l'atto \u00e8 svolto da destra a sinistra o da sinistra a destra. \n\nNello specifico sono stati presentati alla scimmia diversi atti di mano in cui lo sperimentatore dal vivo afferrava un oggetto da destra a sinistra o da sinistra a destra", " negli istogrammi si vede sia la risposta alla visione", " che la risposta in esecuzione. Gli atti venivano poi eseguiti nell'emicampo destro", " in quello sinistro e in posizione centrale. Dall'istogramma si vede che la risposta quando la scimmia vede l'azione svolgersi da destra a sinistra \u00e8 maggiore di quando vede la stessa azione da sinistra a destra. La risposta in esecuzione non cambia ed \u00e8", " come capita per i neuroni specchio", " sempre pi\u00f9 amplia in esecuzione rispetto che in visione.\n\nImportante: quando l'azione era nell'emicampo destro la risposta era un po' meno intensa ma comunque maggiore rispetto all'azione da sinistra a destra."]}, {"question": "", "hints": [""]}, {"question": "Cosa puoi dirmi della capacit\u00e0 dei neuroni mirror di codificare la mano utilizzata?", "hints": ["Una delle caratteristiche che i neuroni mirror riescono a codificare \u00e8 quale mano sia utilizzata dall'osservatore. In questo caso venivano mostrati alla scimmia atti di mano destra e sinistra e venivano presentati nell'emicampo destro o sinistro o al centro. Nella condizione A1 e A2 (A centrale", " 1 sinistra e 2 destra) vediamo come il neurone risponde per la mano sinistra ma non c'\u00e8 risposta per la mano destra. Nella condizione B1 e B2 (B \u00e8 sinistra) abbiamo sempre una risposta nella condizione con la mano sinistra. Nelle condizioni C1 e C2 abbiamo sempre una risposta in C1", " in C2 addirittura il neurone si inibisce.\n\nImportante: La risposta ha una risposta sia quando deve effettuare lei il movimento di afferramento con la mano destra e con la mano sinistra. Ma \u00e8 pi\u00f9 intensa per la mano destra (che \u00e8 quella opposta a quella usata dallo sperimentatore). Questo esperimento fa pensare all'imitazione dei bambini", " infatti le scimmie non imitano se non quando sono appena nate", " ma i bambini quando gli si chiede di imitare un movimento tendono ad avere una imitazione speculare (differenza rispetto all'adulto che invece usa la mano giusta). Questo non dimostra nulla", " ma \u00e8 un aspetto che va ricordato"]}, {"question": "Come hanno fatto a dimostrare che la risposta dei neuroni mirror \u00e8 una risposta motoria e non legata semplicemente all'input visivo?", "hints": ["Sappiamo che le propriet\u00e0 motorie dei neuroni mirror sono state testate attraverso il movimento al buio. Ma rispetto alla loro risposta in osservazione \u00e8 stato fatto un ulteriore esperimento.\nLa scimmia doveva osservare una serie di atti svolti da un osservatore:\n- In una condizione la scimmia osservava un semplice atto di afferramento (il neurone risponde)\n- In una seconda condizione la scimmia osservava la pantomima di quell'atto", " cio\u00e8 la mano che fa il movimento ma non c'\u00e8 l'oggetto (il neurone non risponde)\n- Nella terza condizione veniva mostrato l'oggetto", " poi veniva occluso da una paratia e la scimmia osservava l'atto parzialmente nascosto della mano (il neurone risponde)\n- Nella quarta condizione la scimmia osservava che non c'era l'oggetto", " veniva tirata la paratia e l'osservatore compiva una pantomima (il neurone non risponde)\n\nQuindi si pu\u00f2 escludere che la risposta del neurone sia legata ad una informazione puramente visiva e pittorica", " in quanto nella condizione 3 non vede effettivamente cosa sta succedendo", " eppure il neurone scarica come se stesse osservando l'afferramento e questo lo fa sulla base della memoria", " memoria che per\u00f2 necessita di una sorta di \"dizionario\" delle azioni che \u00e8 codificato nei circuiti parieto-premotori. Per cui la scimmia immagina quello che sta succedendo e lo fa correttamente", " utilizzando le rappresentazioni motorie che sono salvate nel suo sistema motorio. Quello che manca dell'azione osservata viene ricostruito grazie alle rappresentazioni motorie che sono salvate nei circuiti parieto-premotori che contengono queste rappresentazioni."]}, {"question": "Quali sono i neuroni mirror che hanno una codifica predittiva?", "hints": ["Non tutti i neuroni mirror codificano per l'atto anche se non viene osservato interamente. Sono circa la met\u00e0 che rispondono per atti parzialmente occlusi. Di questi una piccola parte mostra di avere una codifica predittiva. Infatti", " se andiamo a vedere i profili di scarica dei neuroni che rispondono per azioni parzialmente occluse", " la maggior parte mostra una temporizzazione identica a quando l'atto viene osservato completamente. Ma una parte di questi mostra una temporizzazione anticipata", " per cui l'atto motorio (afferramento) e la risposta del neurone avviene prima. Nell'esperimento si vedono 4 condizioni:\n- situazione visiva", " il mirror scarica quando vede la mano afferrare l'oggetto\n- situazione di pantomima", " il mirror non scarica\n- pantomima dietro ad uno schermo", " il mirror non scarica\n- situazione visiva con azione dell'afferramento nascosta dallo schermo (il neurone scarica in modo anticipato)\n\nCosa consente a questi neuroni di scaricare in modo anticipato? Probabilmente l'osservazione della mano in avvicinamento manda il neurone mirror sottosoglia ma finch\u00e8 c'\u00e8 l'input visivo la risposta \u00e8 condizionata da questo. Se la mano scompare dietro allo schermo allora il neurone mirror pu\u00f2 attivarsi e lo fa molto probabilmente in virt\u00f9 delle sue passate esperienze motorie e quindi di fatto anticipa andando soprasoglia quando l'input visivo non mostra pi\u00f9 la mano. Quindi si basa su un meccanismo predittivo che si basa sulle prove precedenti"]}]
+[
+  {
+    "question": "Dove sono stati scoperti i neuroni specchio?",
+    "hints": [
+      "F5p si trova nel banco posteriore del solco arcuato",
+      " F5a si trova pi\u00f9 ventralmente sempre nel labbro",
+      " l'area F5c \u00e8 detta convessit\u00e0 e si trova al confine con F4"
+    ]
+  },
+  {
+    "question": "Che differenza c'\u00e8 tra neuroni che codificano lo scopo e neuroni che codificano il tipo di atto in premotoria?",
+    "hints": [
+      "Nel primo esperimento il neurone spara sia che la scimmia esegua una presa con la mano destra o sinistra",
+      " i neuroni specifici per il tipo di atto motorio codificano se quella che sta avvenendo \u00e8 una presa di precisione o di potenza. Sono indifferenti rispetto alla mano ma non rispetto al tipo di presa"
+    ]
+  },
+  {
+    "question": "Come si svolgevano i primi studi sui neuroni specchio? Da quanti neuroni si registrava?",
+    "hints": [
+      "Si inseriva un elettrodo che poteva captare il segnale anche di 3 o 4 neuroni",
+      " la differente risposta era legata alla distanza. Si andava poi ad isolare il singolo neurone e si escludeva con una buona approssimazione il contributo degli altri neuroni"
+    ]
+  },
+  {
+    "question": "Quale \u00e8 l'attivit\u00e0 dei neuroni a riposo?",
+    "hints": [
+      "Dipende",
+      " ci sono neuroni che hanno una scarica spontanea nulla o quasi nulla",
+      " altri invece che hanno una scarica spontanea alta. Per quel che riguarda i neuroni mirror si sono trovati neuroni che all'osservazione aumentavano la loro frequenza di scarica",
+      " altri neuroni con una frequenza spontanea alta che si inibivano all'osservazione di azioni"
+    ]
+  },
+  {
+    "question": "Come era il video che \u00e8 stato mostrato all'inizio sui neuroni specchio?",
+    "hints": [
+      "La scimmia osservava un osservato che piazzava un pezzo di cibo su un contenitore",
+      " poi la scimmia afferrava il cibo. Tra un momento e l'altro c'\u00e8 una pausa",
+      " quando viene presentato il cibo. Questa pausa \u00e8 importante perch\u00e8 esclude che la risposta del neurone mirror iniziale sia una preparazione motoria (altrimenti avrebbe scaricato fino alla fine dell'azione)"
+    ]
+  },
+  {
+    "question": "Cosa puoi dirmi dell'esperimento sui neuroni dei neuroni che si inibiscono all'osservazione?",
+    "hints": [
+      "E' una tipologia di neuroni evidenziata gi\u00e0 dai primi studi. Il neurone a differenza di quando si eccita",
+      " in questo caso si inibisce",
+      " ossia riduce la sua frequenza di scarica",
+      " sia quando osserva l'azione dello sperimentatore",
+      " sia quando afferra il cibo. Importante: c'era una condizione in cui il pezzo di cibo veniva coperto da un bicchierino",
+      " per escludere che la ridotta attivazione in osservazione fosse legata alla mano dello sperimentatore che copriva il cibo",
+      " in questa condizione il neurone non modifica la sua frequenza di scarica quando il cibo viene coperto dal bicchierino."
+    ]
+  },
+  {
+    "question": "Cosa stavano cercando quando hanno trovato i neuroni specchio?",
+    "hints": [
+      "Stavano studiando se i neuroni dell'area F5 avessero una scarica che fosse legata alla cinematica del movimento. Venivano quindi utilizzati oggetti e cibi di varia natura e valenza sia per compiti di osservazione che di esecuzione. Ad esempio veniva preso un pezzo di cibo",
+      " posato su un supporto e poi dato alla scimmia che doveva afferrarlo. Durante questi compiti si \u00e8 visto che i neuroni di F5 rispondevano anche durante l'osservazione di atti motori finalizzati"
+    ]
+  },
+  {
+    "question": "Quali controlli sono stati necessari per lo studio dei mirror e si trovano nello studio di Rizzolatti e Gallese del 1996?",
+    "hints": [
+      "Sono stati fatti i seguenti controlli: 1) presentazione dell'oggetto/cibo per evitare che la risposta visiva fosse di neuroni canonici 2) presentare solo la mano per valutare se non fosse solamente la mano ad attivare il neurone 3) presentazione di una simil-pantomima eseguita con un utensile e non con la mano 4) in esecuzione compito visivo eseguito al buoi. Per escludere che la risposta non fosse motoria ma fosse visiva. Importante: in tutti i controlli il neurone non risponde",
+      " visto che il neurone risponde per l'azione della mano con l'oggetto",
+      " ma non per la mano e non per l'oggetto allora quello che resta \u00e8 l'atto motorio in s\u00e8",
+      " ossia il suo scopo. Per quel che riguarda la pantomima \u00e8 una simil pantomima fatta con un utensile",
+      " nella realt\u00e0 osservazioni ed esperimenti successivi hanno dimostrato che il neurone mirror risponde anche all'utilizzo di strumenti dopo una fase di training o comunque alla fine degli esperimenti dove vede l'utensile come un prolungamento del braccio dello sperimentatore"
+    ]
+  },
+  {
+    "question": "Parlami dell'esperimento in cui si usava come azione la prensione di un oggetto con il dito indice",
+    "hints": [
+      "Nell'esperimento il soggetto doveva prendere un pezzo di cibo dentro ad un piccolo buco con solo l'indice",
+      " Quando si usa l'indice il neurone risponde",
+      " quando si usa una pantomima",
+      " quindi solo l'indice senza il cibo il neurone non risponde",
+      " quando si fa lo stesso gesto con un cacciavite il neurone non risponde.Importante: nei primi studi sui mirror sia la pantomima che la semipantomima fatta con uno strumento non generavano la risposta del neurone."
+    ]
+  },
+  {
+    "question": "Quali sono gli atti motori di mano del repertorio motorio della scimmia? ",
+    "hints": [
+      "Nella scimmia sono stati categorizzati 5 atti motori:\n- Afferrare\n- Manipolare\n- Tenere\n- Piazzare\n- Interazione tra due mani\nNell'uomo gli atti di mano non sono molti di pi\u00f9. Ci sono atti che possono essere eseguiti tramite strumenti. Inoltre c'\u00e8 la presa di precisione tipica di quando dobbiamo tenere una penna in mano per scrivere. Ma la scimmia ha un  atto simile quando deve tenere in mano delle piccole bacchette."
+    ]
+  },
+  {
+    "question": "Oltre alla codifica dello scopo, quali altre variabili possono essere codificate dai neuroni mirror?",
+    "hints": [
+      "Sappiamo che l'ingresso che determina l'input dei neuroni mirror \u00e8 diverso",
+      " possono essere informazioni di tipo motorio",
+      " visivo",
+      " o di altra natura. Gli aspetti studiati che determinano una modulazione della risposta dei neuroni mirror sono:\n- la preferenza per la direzione dell'atto motorio (da destra a sinistra o viceversa)\n- La preferenza manuale (se mano destra o sinistra)",
+      " ricorda l'imitazione speculare dei bambini\n- Il punto di vista",
+      " quindi se l'azione \u00e8 svolta da una prospettiva egocentrica",
+      " a 90\u00b0 o 180\u00b0\n- Se l'azione svolta \u00e8 nello spazio peripersonale o extrapersonale",
+      " per la met\u00e0 \u00e8 una risposta determinata da una distanza operativa",
+      " per met\u00e0 da una distanza metrica. Inoltre la risposta \u00e8 graduale",
+      " per i peripersonali se prendiamo 37 cm come distanza che delimita lo spazio per ed extra",
+      " a 28 e 24.5 cm troviamo risposte pi\u00f9 forti (pi\u00f9 forte a 28cm)",
+      " anche per lo spazio extrapersonale abbiamo una gradualit\u00e0",
+      " con la risposta che aumenta all'aumentare della distanza\n- l'oggetto che viene visto afferrare",
+      " se \u00e8 un cibo (pi\u00f9 o meno preferito) oppure se \u00e8 un oggetto. Anche rispetto ad una associazione tra un oggetto associato ad un reward e un oggetto non associato ad un reward\n- l'intenzione dell'agente (sia che sia la scimmia",
+      " sia che sia l'osservatore)"
+    ]
+  },
+  {
+    "question": "Cosa vuol dire che un neurone mirror ha una scarica preferenziale per la direzione dell'atto?",
+    "hints": [
+      "Significa che alcuni neuroni mirror presentano una scarica differenziale se l'atto \u00e8 svolto da destra a sinistra o da sinistra a destra. \n\nNello specifico sono stati presentati alla scimmia diversi atti di mano in cui lo sperimentatore dal vivo afferrava un oggetto da destra a sinistra o da sinistra a destra",
+      " negli istogrammi si vede sia la risposta alla visione",
+      " che la risposta in esecuzione. Gli atti venivano poi eseguiti nell'emicampo destro",
+      " in quello sinistro e in posizione centrale. Dall'istogramma si vede che la risposta quando la scimmia vede l'azione svolgersi da destra a sinistra \u00e8 maggiore di quando vede la stessa azione da sinistra a destra. La risposta in esecuzione non cambia ed \u00e8",
+      " come capita per i neuroni specchio",
+      " sempre pi\u00f9 amplia in esecuzione rispetto che in visione.\n\nImportante: quando l'azione era nell'emicampo destro la risposta era un po' meno intensa ma comunque maggiore rispetto all'azione da sinistra a destra."
+    ]
+  },
+  {
+    "question": "Cosa puoi dirmi della capacit\u00e0 dei neuroni mirror di codificare la mano utilizzata?",
+    "hints": [
+      "Una delle caratteristiche che i neuroni mirror riescono a codificare \u00e8 quale mano sia utilizzata dall'osservatore. In questo caso venivano mostrati alla scimmia atti di mano destra e sinistra e venivano presentati nell'emicampo destro o sinistro o al centro. Nella condizione A1 e A2 (A centrale",
+      " 1 sinistra e 2 destra) vediamo come il neurone risponde per la mano sinistra ma non c'\u00e8 risposta per la mano destra. Nella condizione B1 e B2 (B \u00e8 sinistra) abbiamo sempre una risposta nella condizione con la mano sinistra. Nelle condizioni C1 e C2 abbiamo sempre una risposta in C1",
+      " in C2 addirittura il neurone si inibisce.\n\nImportante: La risposta ha una risposta sia quando deve effettuare lei il movimento di afferramento con la mano destra e con la mano sinistra. Ma \u00e8 pi\u00f9 intensa per la mano destra (che \u00e8 quella opposta a quella usata dallo sperimentatore). Questo esperimento fa pensare all'imitazione dei bambini",
+      " infatti le scimmie non imitano se non quando sono appena nate",
+      " ma i bambini quando gli si chiede di imitare un movimento tendono ad avere una imitazione speculare (differenza rispetto all'adulto che invece usa la mano giusta). Questo non dimostra nulla",
+      " ma \u00e8 un aspetto che va ricordato"
+    ]
+  },
+  {
+    "question": "Come hanno fatto a dimostrare che la risposta dei neuroni mirror \u00e8 una risposta motoria e non legata semplicemente all'input visivo?",
+    "hints": [
+      "Sappiamo che le propriet\u00e0 motorie dei neuroni mirror sono state testate attraverso il movimento al buio. Ma rispetto alla loro risposta in osservazione \u00e8 stato fatto un ulteriore esperimento.\nLa scimmia doveva osservare una serie di atti svolti da un osservatore:\n- In una condizione la scimmia osservava un semplice atto di afferramento (il neurone risponde)\n- In una seconda condizione la scimmia osservava la pantomima di quell'atto",
+      " cio\u00e8 la mano che fa il movimento ma non c'\u00e8 l'oggetto (il neurone non risponde)\n- Nella terza condizione veniva mostrato l'oggetto",
+      " poi veniva occluso da una paratia e la scimmia osservava l'atto parzialmente nascosto della mano (il neurone risponde)\n- Nella quarta condizione la scimmia osservava che non c'era l'oggetto",
+      " veniva tirata la paratia e l'osservatore compiva una pantomima (il neurone non risponde)\n\nQuindi si pu\u00f2 escludere che la risposta del neurone sia legata ad una informazione puramente visiva e pittorica",
+      " in quanto nella condizione 3 non vede effettivamente cosa sta succedendo",
+      " eppure il neurone scarica come se stesse osservando l'afferramento e questo lo fa sulla base della memoria",
+      " memoria che per\u00f2 necessita di una sorta di \"dizionario\" delle azioni che \u00e8 codificato nei circuiti parieto-premotori. Per cui la scimmia immagina quello che sta succedendo e lo fa correttamente",
+      " utilizzando le rappresentazioni motorie che sono salvate nel suo sistema motorio. Quello che manca dell'azione osservata viene ricostruito grazie alle rappresentazioni motorie che sono salvate nei circuiti parieto-premotori che contengono queste rappresentazioni."
+    ]
+  },
+  {
+    "question": "Quali sono i neuroni mirror che hanno una codifica predittiva?",
+    "hints": [
+      "Non tutti i neuroni mirror codificano per l'atto anche se non viene osservato interamente. Sono circa la met\u00e0 che rispondono per atti parzialmente occlusi. Di questi una piccola parte mostra di avere una codifica predittiva. Infatti",
+      " se andiamo a vedere i profili di scarica dei neuroni che rispondono per azioni parzialmente occluse",
+      " la maggior parte mostra una temporizzazione identica a quando l'atto viene osservato completamente. Ma una parte di questi mostra una temporizzazione anticipata",
+      " per cui l'atto motorio (afferramento) e la risposta del neurone avviene prima. Nell'esperimento si vedono 4 condizioni:\n- situazione visiva",
+      " il mirror scarica quando vede la mano afferrare l'oggetto\n- situazione di pantomima",
+      " il mirror non scarica\n- pantomima dietro ad uno schermo",
+      " il mirror non scarica\n- situazione visiva con azione dell'afferramento nascosta dallo schermo (il neurone scarica in modo anticipato)\n\nCosa consente a questi neuroni di scaricare in modo anticipato? Probabilmente l'osservazione della mano in avvicinamento manda il neurone mirror sottosoglia ma finch\u00e8 c'\u00e8 l'input visivo la risposta \u00e8 condizionata da questo. Se la mano scompare dietro allo schermo allora il neurone mirror pu\u00f2 attivarsi e lo fa molto probabilmente in virt\u00f9 delle sue passate esperienze motorie e quindi di fatto anticipa andando soprasoglia quando l'input visivo non mostra pi\u00f9 la mano. Quindi si basa su un meccanismo predittivo che si basa sulle prove precedenti"
+    ]
+  }
+]
