@@ -119,7 +119,7 @@
         let hintsText = data.hints.join(", ");
         hintsText = hintsText.replace(
           /(Importante[^.]*\.)/g,
-          '<span style="color: red; font-weight: bold;">$1</span>'
+          '<span style="color: red; font-weight: bold;"><br><br>$1<br><br></span>'
         );
         document.getElementById("hints").innerHTML = hintsText;
       }
