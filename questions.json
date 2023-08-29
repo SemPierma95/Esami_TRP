@@ -1,0 +1,80 @@
+[
+  {
+    "question": "Dove sono stati scoperti i neuroni specchio?",
+    "hints": [
+      "F5p si trova nel banco posteriore del solco arcuato",
+      " F5a si trova pi\u00f9 ventralmente sempre nel labbro",
+      " l'area F5c \u00e8 detta convessit\u00e0 e si trova al confine con F4"
+    ]
+  },
+  {
+    "question": "Che differenza c'\u00e8 tra neuroni che codificano lo scopo e neuroni che codificano il tipo di atto in premotoria?",
+    "hints": [
+      "Nel primo esperimento il neurone spara sia che la scimmia esegua una presa con la mano destra o sinistra",
+      " i neuroni specifici per il tipo di atto motorio codificano se quella che sta avvenendo \u00e8 una presa di precisione o di potenza. Sono indifferenti rispetto alla mano ma non rispetto al tipo di presa"
+    ]
+  },
+  {
+    "question": "Come si svolgevano i primi studi sui neuroni specchio? Da quanti neuroni si registrava?",
+    "hints": [
+      "Si inseriva un elettrodo che poteva captare il segnale anche di 3 o 4 neuroni",
+      " la differente risposta era legata alla distanza. Si andava poi ad isolare il singolo neurone e si escludeva con una buona approssimazione il contributo degli altri neuroni"
+    ]
+  },
+  {
+    "question": "Quale \u00e8 l'attivit\u00e0 dei neuroni a riposo?",
+    "hints": [
+      "Dipende",
+      " ci sono neuroni che hanno una scarica spontanea nulla o quasi nulla",
+      " altri invece che hanno una scarica spontanea alta. Per quel che riguarda i neuroni mirror si sono trovati neuroni che all'osservazione aumentavano la loro frequenza di scarica",
+      " altri neuroni con una frequenza spontanea alta che si inibivano all'osservazione di azioni"
+    ]
+  },
+  {
+    "question": "Come era il video che \u00e8 stato mostrato all'inizio sui neuroni specchio?",
+    "hints": [
+      "La scimmia osservava un osservato che piazzava un pezzo di cibo su un contenitore",
+      " poi la scimmia afferrava il cibo. Tra un momento e l'altro c'\u00e8 una pausa",
+      " quando viene presentato il cibo. Questa pausa \u00e8 importante perch\u00e8 esclude che la risposta del neurone mirror iniziale sia una preparazione motoria (altrimenti avrebbe scaricato fino alla fine dell'azione)"
+    ]
+  },
+  {
+    "question": "Cosa puoi dirmi dell'esperimento sui neuroni dei neuroni che si inibiscono all'osservazione?",
+    "hints": [
+      "E' una tipologia di neuroni evidenziata gi\u00e0 dai primi studi. Il neurone a differenza di quando si eccita",
+      " in questo caso si inibisce",
+      " ossia riduce la sua frequenza di scarica",
+      " sia quando osserva l'azione dello sperimentatore",
+      " sia quando afferra il cibo. Importante: c'era una condizione in cui il pezzo di cibo veniva coperto da un bicchierino",
+      " per escludere che la ridotta attivazione in osservazione fosse legata alla mano dello sperimentatore che copriva il cibo",
+      " in questa condizione il neurone non modifica la sua frequenza di scarica quando il cibo viene coperto dal bicchierino."
+    ]
+  },
+  {
+    "question": "Cosa stavano cercando quando hanno trovato i neuroni specchio?",
+    "hints": [
+      "Stavano studiando se i neuroni dell'area F5 avessero una scarica che fosse legata alla cinematica del movimento. Venivano quindi utilizzati oggetti e cibi di varia natura e valenza sia per compiti di osservazione che di esecuzione. Ad esempio veniva preso un pezzo di cibo",
+      " posato su un supporto e poi dato alla scimmia che doveva afferrarlo. Durante questi compiti si \u00e8 visto che i neuroni di F5 rispondevano anche durante l'osservazione di atti motori finalizzati"
+    ]
+  },
+  {
+    "question": "Quali controlli sono stati necessari per lo studio dei mirror e si trovano nello studio di Rizzolatti e Gallese del 1996?",
+    "hints": [
+      "Sono stati fatti i seguenti controlli: 1) presentazione dell'oggetto/cibo per evitare che la risposta visiva fosse di neuroni canonici 2) presentare solo la mano per valutare se non fosse solamente la mano ad attivare il neurone 3) presentazione di una simil-pantomima eseguita con un utensile e non con la mano 4) in esecuzione compito visivo eseguito al buoi. Per escludere che la risposta non fosse motoria ma fosse visiva. Importante: in tutti i controlli il neurone non risponde",
+      " visto che il neurone risponde per l'azione della mano con l'oggetto",
+      " ma non per la mano e non per l'oggetto allora quello che resta \u00e8 l'atto motorio in s\u00e8",
+      " ossia il suo scopo. Per quel che riguarda la pantomima \u00e8 una simil pantomima fatta con un utensile",
+      " nella realt\u00e0 osservazioni ed esperimenti successivi hanno dimostrato che il neurone mirror risponde anche all'utilizzo di strumenti dopo una fase di training o comunque alla fine degli esperimenti dove vede l'utensile come un prolungamento del braccio dello sperimentatore"
+    ]
+  },
+  {
+    "question": "Parlami dell'esperimento in cui si usava come azione la prensione di un oggetto con il dito indice",
+    "hints": [
+      "Nell'esperimento il soggetto doveva prendere un pezzo di cibo dentro ad un piccolo buco con solo l'indice",
+      " Quando si usa l'indice il neurone risponde",
+      " quando si usa una pantomima",
+      " quindi solo l'indice senza il cibo il neurone non risponde",
+      " quando si fa lo stesso gesto con un cacciavite il neurone non risponde.Importante: nei primi studi sui mirror sia la pantomima che la semipantomima fatta con uno strumento non generavano la risposta del neurone."
+    ]
+  }
+]

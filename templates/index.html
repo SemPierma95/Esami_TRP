@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      rel="icon"
+      href="{{ url_for('static', filename='favicon.ico') }}"
+      type="image/x-icon"
+    />
+    <title>Domande App</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      /* Stile alla Apple */
+      body {
+        background-color: #f9f9f9;
+        color: #333;
+        font-family: "Helvetica Neue", sans-serif;
+        text-align: center;
+      }
+      .container {
+        max-width: 600px;
+        margin: auto;
+      }
+      .btn {
+        background-color: #007aff;
+        color: white;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container mt-5">
+      <h1>Domanda:</h1>
+      <p id="question"></p>
+      <button class="btn" onclick="showHints()">Mostra Suggerimenti</button>
+      <div id="hints" style="display: none"></div>
+      <!-- Inizialmente nascosto -->
+
+      <!-- Levetta per mostrare/nascondere la sezione -->
+      <button
+        class="btn btn-link"
+        type="button"
+        data-toggle="collapse"
+        data-target="#addQuestionSection"
+        aria-expanded="false"
+        aria-controls="addQuestionSection"
+      >
+        ^ Aggiungi una Nuova Domanda
+      </button>
+
+      <!-- Sezione collassabile -->
+      <!-- Sezione collassabile -->
+      <div class="collapse" id="addQuestionSection" style="margin-top: 1rem">
+        <!-- Form per l'aggiunta di nuove domande -->
+        <form id="questionForm">
+          <input
+            type="text"
+            id="newQuestion"
+            class="form-control"
+            placeholder="Qui inserisci una nuova domanda"
+            rows="4"
+          />
+          <textarea
+            id="newHints"
+            class="form-control mt-2"
+            placeholder="Qui inserisci i suggerimenti"
+            rows="4"
+          ></textarea>
+          <button type="submit" class="btn mt-2">Aggiungi</button>
+        </form>
+      </div>
+
+      <h2 class="mt-5">Rispondi ad una Domanda</h2>
+      <button class="btn" onclick="getRandomQuestion()">Nuova Domanda</button>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+      // Funzione per aggiungere una nuova domanda
+      async function addQuestion() {
+        const newQuestion = document.getElementById("newQuestion").value;
+        const newHints = document.getElementById("newHints").value.split(","); // Supponendo che i suggerimenti siano separati da virgole
+
+        const response = await fetch("/add_question", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ question: newQuestion, hints: newHints }),
+        });
+
+        if (response.status === 201) {
+          alert("Domanda aggiunta con successo");
+          // Reimposta i campi di input
+          document.getElementById("newQuestion").value = "";
+          document.getElementById("newHints").value = "";
+        } else {
+          alert("Errore nell'aggiunta della domanda");
+        }
+      }
+
+      // Funzione per ottenere una domanda casuale
+      async function getRandomQuestion() {
+        const response = await fetch("/get_question", {
+          method: "GET",
+        });
+
+        const data = await response.json();
+        document.getElementById("question").textContent = data.question;
+        document.getElementById("hints").style.display = "none"; // Nasconde i suggerimenti
+
+        // Controlla se il suggerimento contiene la parola "Importante"
+        let hintsText = data.hints.join(", ");
+        hintsText = hintsText.replace(
+          /(Importante[^.]*\.)/g,
+          '<span style="color: red; font-weight: bold;">$1</span>'
+        );
+        document.getElementById("hints").innerHTML = hintsText;
+      }
+
+      // Funzione per mostrare i suggerimenti
+      function showHints() {
+        document.getElementById("hints").style.display = "block"; // Mostra i suggerimenti
+      }
+
+      // Evento per controllare se "Ctrl+Invio" è stato premuto nel textarea
+      document
+        .getElementById("newHints")
+        .addEventListener("keydown", function (event) {
+          if (event.key === "Enter" && event.ctrlKey) {
+            this.value = this.value + "\n"; // Aggiunge una nuova riga
+            event.preventDefault(); // Previene l'invio del form
+          }
+        });
+
+      // Quando il documento è completamente caricato
+      document.addEventListener("DOMContentLoaded", function () {
+        // Aggancia l'evento submit al form
+        const form = document.getElementById("questionForm");
+        form.addEventListener("submit", function (event) {
+          event.preventDefault(); // Previene il comportamento di invio standard del form
+          addQuestion(); // Chiama la funzione per aggiungere una nuova domanda
+        });
+      });
+    </script>
+  </body>
+</html>
