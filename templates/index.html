@@ -38,25 +38,24 @@
       <h1>Domanda:</h1>
       <p id="question"></p>
       <button class="btn" onclick="showHints()">Mostra Suggerimenti</button>
-      <div id="hints" style="display: none"></div>
       <!-- Inizialmente nascosto -->
-
+      
       <!-- Levetta per mostrare/nascondere la sezione -->
       <button
-        class="btn btn-link"
-        type="button"
-        data-toggle="collapse"
-        data-target="#addQuestionSection"
-        aria-expanded="false"
-        aria-controls="addQuestionSection"
+      class="btn btn-link"
+      type="button"
+      data-toggle="collapse"
+      data-target="#addQuestionSection"
+      aria-expanded="false"
+      aria-controls="addQuestionSection"
       >
-        ^ Aggiungi una Nuova Domanda
-      </button>
-
-      <!-- Sezione collassabile -->
-      <!-- Sezione collassabile -->
-      <div class="collapse" id="addQuestionSection" style="margin-top: 1rem">
-        <!-- Form per l'aggiunta di nuove domande -->
+      ^ Aggiungi una Nuova Domanda
+    </button>
+    <div id="hints" style="display: none; padding: 0 20px;"></div>
+    
+    <!-- Sezione collassabile -->
+    <div class="collapse" id="addQuestionSection" style="margin-top: 1rem">
+      <!-- Form per l'aggiunta di nuove domande -->
         <form id="questionForm">
           <input
             type="text"
