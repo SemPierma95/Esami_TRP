@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
       rel="icon"
       href="{{ url_for('static', filename='favicon.ico') }}"
@@ -30,6 +30,12 @@
         background-color: #007aff;
         color: white;
       }
+      #hints {
+        text-align: justify;
+        text-justify: inter-word;
+        padding-left: 2rem;
+        padding-right: 2rem;
+      }
     </style>
   </head>
 
@@ -39,23 +45,23 @@
       <p id="question"></p>
       <button class="btn" onclick="showHints()">Mostra Suggerimenti</button>
       <!-- Inizialmente nascosto -->
-      
+
       <!-- Levetta per mostrare/nascondere la sezione -->
       <button
-      class="btn btn-link"
-      type="button"
-      data-toggle="collapse"
-      data-target="#addQuestionSection"
-      aria-expanded="false"
-      aria-controls="addQuestionSection"
+        class="btn btn-link"
+        type="button"
+        data-toggle="collapse"
+        data-target="#addQuestionSection"
+        aria-expanded="false"
+        aria-controls="addQuestionSection"
       >
-      ^ Aggiungi una Nuova Domanda
-    </button>
-    <div id="hints" style="display: none; padding: 0 20px;"></div>
-    
-    <!-- Sezione collassabile -->
-    <div class="collapse" id="addQuestionSection" style="margin-top: 1rem">
-      <!-- Form per l'aggiunta di nuove domande -->
+        ^ Aggiungi una Nuova Domanda
+      </button>
+      <div id="hints" style="display: none; padding: 20 20px"></div>
+
+      <!-- Sezione collassabile -->
+      <div class="collapse" id="addQuestionSection" style="margin-top: 1rem">
+        <!-- Form per l'aggiunta di nuove domande -->
         <form id="questionForm">
           <input
             type="text"
@@ -104,6 +110,17 @@
         }
       }
 
+      // Funzione per convertire il testo in una lista HTML se contiene marcatori di lista
+      function convertToList(text) {
+        if (text.includes("- ")) {
+          const listItems = text.split("- ").slice(1); // Rimuove il primo elemento vuoto
+          const listHTML = listItems
+            .map((item) => `<li>${item.replace(/\n/g, "<br>")}</li>`)
+            .join("");
+          return `<ol>${listHTML}</ol>`;
+        }
+        return text.replace(/\n/g, "<br>");
+      }
       // Funzione per ottenere una domanda casuale
       async function getRandomQuestion() {
         const response = await fetch("/get_question", {
@@ -114,18 +131,27 @@
         document.getElementById("question").textContent = data.question;
         document.getElementById("hints").style.display = "none"; // Nasconde i suggerimenti
 
+        // Unisci tutti i suggerimenti in una singola stringa
+        const combinedHints = data.hints.join(", ");
+
+        // Applica la formattazione
+        let hintsText = convertToList(combinedHints);
+
         // Controlla se il suggerimento contiene la parola "Importante"
-        let hintsText = data.hints.join(", ");
         hintsText = hintsText.replace(
           /(Importante[^.]*\.)/g,
           '<span style="color: red; font-weight: bold;"><br><br>$1<br><br></span>'
         );
+
         document.getElementById("hints").innerHTML = hintsText;
       }
 
       // Funzione per mostrare i suggerimenti
       function showHints() {
-        document.getElementById("hints").style.display = "block"; // Mostra i suggerimenti
+        var hintsDiv = document.getElementById("hints");
+        hintsDiv.style.display = "block"; // Mostra i suggerimenti
+        hintsDiv.style.paddingTop = "2rem"; // Aggiungi padding a sinistra
+        hintsDiv.style.paddingBottom = "1rem"; // Aggiungi padding a destra
       }
 
       // Evento per controllare se "Ctrl+Invio" è stato premuto nel textarea
