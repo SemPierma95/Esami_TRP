@@ -62,20 +62,26 @@
       <!-- Sezione collassabile -->
       <div class="collapse" id="addQuestionSection" style="margin-top: 1rem">
         <!-- Form per l'aggiunta di nuove domande -->
-        <form id="questionForm">
+        <form id="questionForm" enctype="multipart/form-data">
           <input
             type="text"
             id="newQuestion"
+            name="newQuestion"
             class="form-control"
             placeholder="Qui inserisci una nuova domanda"
             rows="4"
           />
           <textarea
             id="newHints"
+            name="newHints"
             class="form-control mt-2"
             placeholder="Qui inserisci i suggerimenti"
             rows="4"
           ></textarea>
+          <input type="file" 
+            id="newImage" 
+            name="newImage" 
+            class="form-control mt-2" />
           <button type="submit" class="btn mt-2">Aggiungi</button>
         </form>
       </div>
@@ -89,15 +95,12 @@
     <script>
       // Funzione per aggiungere una nuova domanda
       async function addQuestion() {
-        const newQuestion = document.getElementById("newQuestion").value;
-        const newHints = document.getElementById("newHints").value.split(","); // Supponendo che i suggerimenti siano separati da virgole
+        const form = document.getElementById("questionForm");
+        const formData = new FormData(form);
 
         const response = await fetch("/add_question", {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ question: newQuestion, hints: newHints }),
+          body: formData,
         });
 
         if (response.status === 201) {
@@ -105,6 +108,7 @@
           // Reimposta i campi di input
           document.getElementById("newQuestion").value = "";
           document.getElementById("newHints").value = "";
+          document.getElementById("newImage").value = "";
         } else {
           alert("Errore nell'aggiunta della domanda");
         }
@@ -128,14 +132,18 @@
         });
 
         const data = await response.json();
+        console.log(data); // Debug: stampa i dati ricevuti
+
         document.getElementById("question").textContent = data.question;
         document.getElementById("hints").style.display = "none"; // Nasconde i suggerimenti
 
-        // Unisci tutti i suggerimenti in una singola stringa
-        const combinedHints = data.hints.join(", ");
-
         // Applica la formattazione
-        let hintsText = convertToList(combinedHints);
+        let hintsText = convertToList(data.hints.join("\n"));
+        if (data.image) {
+          hintsText =
+            `<img src="${data.image}" alt="Suggerimento in immagine">` +
+            hintsText; // Aggiungi l'immagine
+        }
 
         // Controlla se il suggerimento contiene la parola "Importante"
         hintsText = hintsText.replace(
