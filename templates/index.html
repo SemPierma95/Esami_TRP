@@ -45,7 +45,9 @@
       <p id="question"></p>
       <button class="btn" onclick="showHints()">Mostra Suggerimenti</button>
       <!-- Inizialmente nascosto -->
-
+      <button id="editHintsButton" onclick="editHints()" style="display: none">
+        Modifica suggerimento
+      </button>
       <!-- Levetta per mostrare/nascondere la sezione -->
       <button
         class="btn btn-link"
@@ -78,10 +80,12 @@
             placeholder="Qui inserisci i suggerimenti"
             rows="4"
           ></textarea>
-          <input type="file" 
-            id="newImage" 
-            name="newImage" 
-            class="form-control mt-2" />
+          <input
+            type="file"
+            id="newImage"
+            name="newImage"
+            class="form-control mt-2"
+          />
           <button type="submit" class="btn mt-2">Aggiungi</button>
         </form>
       </div>
@@ -93,16 +97,22 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
+      // Funzione per mostrare i suggerimenti
+      function showHints() {
+        var hintsDiv = document.getElementById("hints");
+        hintsDiv.style.display = "block"; // Mostra i suggerimenti
+        hintsDiv.style.paddingTop = "2rem"; // Aggiungi padding in alto
+        hintsDiv.style.paddingBottom = "1rem"; // Aggiungi padding in basso
+      }
+
       // Funzione per aggiungere una nuova domanda
       async function addQuestion() {
         const form = document.getElementById("questionForm");
         const formData = new FormData(form);
-
         const response = await fetch("/add_question", {
           method: "POST",
           body: formData,
         });
-
         if (response.status === 201) {
           alert("Domanda aggiunta con successo");
           // Reimposta i campi di input
@@ -117,7 +127,7 @@
       // Funzione per convertire il testo in una lista HTML se contiene marcatori di lista
       function convertToList(text) {
         if (text.includes("- ")) {
-          const listItems = text.split("- ").slice(1); // Rimuove il primo elemento vuoto
+          const listItems = text.split("- ").slice(1);
           const listHTML = listItems
             .map((item) => `<li>${item.replace(/\n/g, "<br>")}</li>`)
             .join("");
@@ -125,56 +135,73 @@
         }
         return text.replace(/\n/g, "<br>");
       }
+
       // Funzione per ottenere una domanda casuale
       async function getRandomQuestion() {
         const response = await fetch("/get_question", {
           method: "GET",
         });
-
         const data = await response.json();
-        console.log(data); // Debug: stampa i dati ricevuti
-
         document.getElementById("question").textContent = data.question;
         document.getElementById("hints").style.display = "none"; // Nasconde i suggerimenti
-
-        // Applica la formattazione
         let hintsText = convertToList(data.hints.join("\n"));
         if (data.image) {
           hintsText =
             `<img src="${data.image}" alt="Suggerimento in immagine">` +
-            hintsText; // Aggiungi l'immagine
+            hintsText;
         }
-
-        // Controlla se il suggerimento contiene la parola "Importante"
         hintsText = hintsText.replace(
           /(Importante[^.]*\.)/g,
           '<span style="color: red; font-weight: bold;"><br><br>$1<br><br></span>'
         );
-
         document.getElementById("hints").innerHTML = hintsText;
       }
 
-      // Funzione per mostrare i suggerimenti
-      function showHints() {
+      function editHints() {
+        var button = document.getElementById("editHintsButton");
+        var textarea = document.getElementById("editHintsArea");
         var hintsDiv = document.getElementById("hints");
-        hintsDiv.style.display = "block"; // Mostra i suggerimenti
-        hintsDiv.style.paddingTop = "2rem"; // Aggiungi padding a sinistra
-        hintsDiv.style.paddingBottom = "1rem"; // Aggiungi padding a destra
-      }
 
-      // Evento per controllare se "Ctrl+Invio" è stato premuto nel textarea
-      document
-        .getElementById("newHints")
-        .addEventListener("keydown", function (event) {
-          if (event.key === "Enter" && event.ctrlKey) {
-            this.value = this.value + "\n"; // Aggiunge una nuova riga
-            event.preventDefault(); // Previene l'invio del form
-          }
-        });
+        if (
+          textarea.style.display === "none" ||
+          textarea.style.display === ""
+        ) {
+          // Prende il contenuto HTML da hintsDiv e lo inserisce nella textarea
+          textarea.value = hintsDiv.innerHTML;
+          textarea.style.display = "block"; // Mostra la textarea
+          hintsDiv.style.display = "none"; // Nasconde hintsDiv
+          button.textContent = "Salva modifica"; // Cambia il testo del pulsante
+        } else {
+          // Prende il contenuto dalla textarea e lo inserisce in hintsDiv
+          hintsDiv.innerHTML = textarea.value;
+          hintsDiv.style.display = "block"; // Mostra hintsDiv
+          textarea.style.display = "none"; // Nasconde la textarea
+          button.textContent = "Modifica suggerimento"; // Cambia il testo del pulsante
+
+          // TODO: Qui inserire la logica per aggiornare questions.json
+          fetch("/update_question", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              question: document.getElementById("question").textContent,
+              updated_hints: textarea.value,
+            }),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.status === "success") {
+                alert("Suggerimento aggiornato con successo");
+              } else {
+                alert("Errore nell'aggiornamento del suggerimento");
+              }
+            });
+        }
+      }
 
       // Quando il documento è completamente caricato
       document.addEventListener("DOMContentLoaded", function () {
-        // Aggancia l'evento submit al form
         const form = document.getElementById("questionForm");
         form.addEventListener("submit", function (event) {
           event.preventDefault(); // Previene il comportamento di invio standard del form
