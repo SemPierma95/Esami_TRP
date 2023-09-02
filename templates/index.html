@@ -44,6 +44,8 @@
       <h1>Domanda:</h1>
       <p id="question"></p>
       <button class="btn" onclick="showHints()">Mostra Suggerimenti</button>
+      <button class="btn" onclick="hideHints()">Nascondi Suggerimenti</button>
+
       <!-- Inizialmente nascosto -->
 
       <!-- Levetta per mostrare/nascondere la sezione -->
@@ -173,6 +175,12 @@
         hintsDiv.style.display = "block"; // Mostra i suggerimenti
         hintsDiv.style.paddingTop = "2rem"; // Aggiungi padding a sinistra
         hintsDiv.style.paddingBottom = "1rem"; // Aggiungi padding a destra
+      }
+
+      // Funzione per nascondere i suggerimenti
+      function hideHints() {
+        var hintsDiv = document.getElementById("hints");
+        hintsDiv.style.display = "none"; // Nasconde i suggerimenti
       }
 
       // Evento per controllare se "Ctrl+Invio" è stato premuto nel textarea
