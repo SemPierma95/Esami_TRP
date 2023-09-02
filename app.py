@@ -8,7 +8,6 @@ app = Flask(__name__)
 
 app.secret_key = 'paolo'
 
-
 # Carica il database delle domande all'avvio dell'applicazione
 try:
     with open('questions.json', 'r') as f:
@@ -16,6 +15,9 @@ try:
 except FileNotFoundError:
     questions_db = []
 
+@app.route('/debug_session')
+def debug_session():
+    return jsonify(dict(session))
 
 def format_path(filename):
     if "static/uploads" not in filename:
