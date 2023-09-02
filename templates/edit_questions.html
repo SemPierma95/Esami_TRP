@@ -8,6 +8,7 @@
       type="image/x-icon"
     />
     <title>Gestione Domande</title>
+
     <!-- Bootstrap CSS -->
     <link
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -30,11 +31,23 @@
         background-color: #007aff;
         color: white;
       }
+
+      .img-preview {
+        width: 150;
+        height: 150px;
+        object-fit: cover;
+        margin-left: 10px;
+      }
     </style>
   </head>
   <body>
     <div class="container mt-5">
       <h1>Gestione delle Domande</h1>
+      <div class="col-md-12">
+        <a href="/" class="btn btn-warning"
+          >Torna alla sezione delle risposte</a
+        >
+      </div>
       <div id="questionGrid">
         <!-- Le domande saranno popolate dinamicamente qui -->
       </div>
@@ -76,35 +89,52 @@
       }
 
       // Funzione per eliminare una domanda
-      async function deleteQuestion(id) {
-        const response = await fetch(`/delete_question/${id}`, {
-            method: 'DELETE'
-        });
-    
-        if (response.status === 200) {
-            alert("Domanda eliminata con successo");
-            // Aggiorna la lista delle domande
-            getQuestions();
-        } else {
-            alert("Si è verificato un errore durante l'eliminazione della domanda");
-        }
-    }
-    
+      function deleteImage(id) {
+        const formData = new FormData();
+        formData.append("deleteImage", "true");
 
+        fetch(`/update_question/${id}`, {
+          method: "POST",
+          body: formData,
+        });
+
+        if (response.status === 200) {
+          alert("Domanda eliminata con successo");
+          // Aggiorna la lista delle domande
+          getQuestions();
+        } else {
+          alert(
+            "Si è verificato un errore durante l'eliminazione della domanda"
+          );
+        }
+      }
 
       // Funzione per eliminare l'immagine
       function deleteImage(id) {
         const formData = new FormData();
         formData.append("deleteImage", "true");
-      
+
         fetch(`/update_question/${id}`, {
-          method: "DELETE",
+          method: "POST",
           body: formData,
         })
-          .then((response) => response.json())
-          .then((data) => {
-            if (data.status === 200) {  // Cambia response.status in data.status
+          .then((response) => {
+            if (response.status === 200) {
               alert("Immagine eliminata con successo");
+
+              // Rimuovi l'immagine dall'anteprima
+              let previewImgElement = document.getElementById(
+                `previewImage${id}`
+              );
+              if (previewImgElement) {
+                previewImgElement.remove();
+              }
+
+              // Rimuovi l'immagine dalla sezione dettagliata
+              let detailImgElement = document.querySelector(`#hints${id} img`);
+              if (detailImgElement) {
+                detailImgElement.remove();
+              }
             } else {
               alert(
                 "Si è verificato un errore durante l'eliminazione dell'immagine"
@@ -115,7 +145,9 @@
             console.log("Error:", error);
           });
       }
-      
+
+      // Funzione per salvare la domanda modificata
+
       async function saveQuestion(id) {
         // Ottieni il testo modificato della domanda e dei suggerimenti
         const editedQuestion = document
@@ -141,6 +173,44 @@
 
         const data = await response.json();
 
+        // Se un file è stato selezionato
+        if (selectedFile) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            // Aggiorna l'immagine principale
+            let imgElement = document.getElementById(`image${id}`);
+            if (!imgElement) {
+              imgElement = document.createElement("img");
+              imgElement.id = `image${id}`;
+              document.getElementById(`hints${id}`).appendChild(imgElement);
+            }
+            imgElement.src = e.target.result;
+
+            // Aggiorna l'immagine di anteprima
+            let previewElement = document.getElementById(`previewImage${id}`);
+            if (!previewElement) {
+              previewElement = document.createElement("img");
+              previewElement.id = `previewImage${id}`;
+              previewElement.className = "img-preview";
+              document.querySelector(`.card-id`).after(previewElement);
+            }
+            previewElement.src = e.target.result;
+          };
+
+          // Leggi il file immagine
+          reader.readAsDataURL(selectedFile);
+        } else {
+          // Rimuovi l'elemento <img> se esiste
+          let imgElement = document.getElementById(`image${id}`);
+          if (imgElement) {
+            imgElement.remove();
+          }
+          let previewElement = document.getElementById(`previewImage${id}`);
+          if (previewElement) {
+            previewElement.remove();
+          }
+        }
+
         // Se tutto va bene, ritorna alla modalità non modificabile
         if (response.status === 200) {
           alert(data.message);
@@ -163,20 +233,26 @@
         }
       }
 
-      // Funzione per ottenere tutte le domande
       async function getQuestions() {
         const response = await fetch("/get_all_questions");
         const data = await response.json();
         let questionGrid = document.getElementById("questionGrid");
+
         data.forEach((item) => {
+          let imageHTML = item.image
+            ? `<img id="previewImage${item.id}" class="img-preview" src="${item.image}" alt="">`
+            : "";
           let card = document.createElement("div");
           card.className = "card";
           card.innerHTML = `
             <div class="card-body">
-    <span class="card-id">ID: ${item.id}</span>
-    <div id="question${item.id}" class="card-title" contenteditable="false">
-      ${item.question}
-    </div>
+              <span class="card-id">ID: ${item.id}</span>
+              ${imageHTML}
+              <div id="question${
+                item.id
+              }" class="card-title" contenteditable="false">
+                ${item.question}
+              </div>
     <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse${
       item.id
     }" aria-expanded="false">
@@ -231,6 +307,42 @@
           .catch((error) => {
             console.log("Error:", error);
           });
+      }
+      
+      // Funzione per eliminare una domanda
+      async function deleteQuestion(id) {
+        const confirmation = window.confirm(
+          "Sei sicuro di voler eliminare questa domanda?"
+        );
+        if (confirmation) {
+          try {
+            const response = await fetch(`/delete_question/${id}`, {
+              method: "DELETE",
+            });
+
+            if (response.status === 200) {
+              alert("Domanda eliminata con successo");
+
+              // Trova e rimuove la card della domanda
+              const cards = document.querySelectorAll(".card");
+              cards.forEach((card) => {
+                const cardIdSpan = card.querySelector(".card-id");
+                if (
+                  cardIdSpan &&
+                  cardIdSpan.textContent.includes(`ID: ${id}`)
+                ) {
+                  card.remove();
+                }
+              });
+            } else {
+              alert(
+                "Si è verificato un errore durante l'eliminazione della domanda"
+              );
+            }
+          } catch (error) {
+            console.log("Errore:", error);
+          }
+        }
       }
 
       // Quando il documento è completamente caricato

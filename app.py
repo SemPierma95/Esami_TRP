@@ -18,11 +18,13 @@ except FileNotFoundError:
 
 
 def format_path(filename):
-    image_path = os.path.join('static', 'uploads', filename)
-    # Corregge il percorso duplicato se presente
-    image_path = image_path.replace("static/uploads/static/uploads/", "static/uploads/")
-    # Assicura che il percorso sia sempre "static/uploads/"
+    if "static/uploads" not in filename:
+        image_path = os.path.join('static', 'uploads', filename)
+    else:
+        image_path = filename
+
     return image_path.replace("\\", "/")
+
 
 
 
@@ -88,7 +90,7 @@ def add_question():
     questions_db.append(new_entry)
 
     with open('questions.json', 'w') as f:
-        json.dump(questions_db, f)
+        json.dump(questions_db, f, indent=4)
 
     return jsonify(new_entry), 201
 
@@ -112,7 +114,7 @@ def update_question(question_id):
         edited_hints = []
 
     image_file = request.files.get('newImage')
-    delete_image = request.form.get('deleteImage')  # Aggiungi questa linea
+    delete_image = request.form.get('deleteImage')  # Aggiunto
 
     for question in questions_db:
         if question['id'] == question_id:
@@ -128,15 +130,16 @@ def update_question(question_id):
                 image_file.save(os.path.join('static/uploads', filename))
                 image_path = format_path(filename)  # Usare solo il nome del file
                 question['image'] = image_path
-            elif delete_image:  # Aggiungi questa condizione
-                question.pop('image', None)
+            elif delete_image:  # Aggiunto
+                question.pop('image', None)  # Aggiunto
 
             with open('questions.json', 'w') as f:
-                json.dump(questions_db, f)
+                json.dump(questions_db, f, indent=4)
 
-            return jsonify({"message": "Domanda aggiornata con successo"}), 200
+            return jsonify({"message": "Domanda aggiornata con successo", "status":200}), 200
 
-    return jsonify({"message": "Domanda non trovata"}), 404
+    return jsonify({"message": "Domanda non trovata", "status": 404}), 404
+
 
 
 # Funzione per eliminare una domanda
@@ -148,7 +151,7 @@ def delete_question(question_id):
         if question['id'] == question_id:
             questions_db.remove(question)
             with open('questions.json', 'w') as f:
-                json.dump(questions_db, f)
+                json.dump(questions_db, f, indent=4)
             return jsonify({"message": "Domanda eliminata con successo"}), 200
     return jsonify({"message": "Domanda non trovata"}), 404
 
@@ -159,8 +162,6 @@ def index():
     return render_template('index.html')
 
 # Endpoint per il favicon
-
-
 @app.route('/favicon.ico')
 def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
