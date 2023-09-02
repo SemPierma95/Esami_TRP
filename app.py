@@ -28,33 +28,29 @@ def format_path(filename):
     return image_path.replace("\\", "/")
 
 
-
-
-
-# Variabile globale per tenere traccia delle domande non utilizzate
-unused_questions = []
-
 # Endpoint per ottenere una domanda casuale
-
 
 @app.route('/get_question', methods=['GET'])
 def get_question():
-    if 'unused_questions' not in session:
-        with open('questions.json', 'r') as f:
-            questions_db = json.load(f)
-        session['unused_questions'] = questions_db.copy()
+    with open('questions.json', 'r') as f:
+        questions_db = json.load(f)  # Carica il database delle domande
+    
+    if 'unused_question_ids' not in session:
+        session['unused_question_ids'] = [q['id'] for q in questions_db]
 
-    unused_questions = session['unused_questions']
+    unused_question_ids = session['unused_question_ids']
 
-    if not unused_questions:
-        session['unused_questions'] = questions_db.copy()
+    if not unused_question_ids:
+        session['unused_question_ids'] = [q['id'] for q in questions_db]
         return jsonify({"message": "Le domande sono finite, ricominciamo."})
 
-    question = random.choice(unused_questions)
-    unused_questions.remove(question)
-    session['unused_questions'] = unused_questions
+    random_id = random.choice(unused_question_ids)
+    question = next(q for q in questions_db if q['id'] == random_id)
+    unused_question_ids.remove(random_id)
+    session['unused_question_ids'] = unused_question_ids
 
     return jsonify(question)
+
 
 
 @app.route('/add_question', methods=['POST'])
