@@ -142,11 +142,11 @@
             "Le domande sono finite! Vuoi ricominciare?"
           );
           if (restart) {
-            // Ricarica la pagina o chiama una funzione per ripristinare lo stato
             location.reload();
           }
           return;
         }
+
         document.getElementById("question").textContent = data.question;
         document.getElementById("hints").style.display = "none"; // Nasconde i suggerimenti
 
@@ -155,7 +155,7 @@
         if (data.image) {
           hintsText =
             `<img src="${data.image}" alt="Suggerimento in immagine">` +
-            hintsText; // Aggiungi l'immagine
+            hintsText;
         }
 
         // Controlla se il suggerimento contiene la parola "Importante"
@@ -166,6 +166,7 @@
 
         document.getElementById("hints").innerHTML = hintsText;
       }
+
       // Funzione per mostrare i suggerimenti
       function showHints() {
         var hintsDiv = document.getElementById("hints");
