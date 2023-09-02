@@ -48,26 +48,32 @@ def get_question():
     return jsonify(question)
 
 
-# Endpoint per aggiungere una nuova domanda
 @app.route('/add_question', methods=['POST'])
 def add_question():
     new_question = request.form.get('newQuestion')
     new_hints = request.form.get('newHints')
 
- # Controllo se new_hints è None
+    # Controllo se new_hints è None
     if new_hints is not None:
         new_hints = new_hints.split(", ")
     else:
         new_hints = []
 
     image_file = request.files.get('newImage')
+
+    # Trova l'ID massimo tra le domande esistenti
+    max_id = max([q.get('id', 0) for q in questions_db])
+
     new_entry = {
+        'id': max_id + 1,  # Assegna l'ID successivo
         'question': new_question,
         'hints': new_hints
     }
 
     if image_file:
         filename = secure_filename(image_file.filename)
+        if not os.path.exists('static/uploads'):
+            os.makedirs('static/uploads')
         image_file.save(os.path.join('static/uploads', filename))
 
         # Formatta il percorso dell'immagine
@@ -80,6 +86,7 @@ def add_question():
         json.dump(questions_db, f)
 
     return jsonify(new_entry), 201
+
 
 # Funzione per formattare il percorso del file
 
