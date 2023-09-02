@@ -6,7 +6,7 @@ import os
 
 app = Flask(__name__)
 
-app.secret_key = 'paolo'
+app.secret_key = 'paolo' 
 
 # Carica il database delle domande all'avvio dell'applicazione
 try:
