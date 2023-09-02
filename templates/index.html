@@ -78,10 +78,12 @@
             placeholder="Qui inserisci i suggerimenti"
             rows="4"
           ></textarea>
-          <input type="file" 
-            id="newImage" 
-            name="newImage" 
-            class="form-control mt-2" />
+          <input
+            type="file"
+            id="newImage"
+            name="newImage"
+            class="form-control mt-2"
+          />
           <button type="submit" class="btn mt-2">Aggiungi</button>
         </form>
       </div>
@@ -134,6 +136,17 @@
         const data = await response.json();
         console.log(data); // Debug: stampa i dati ricevuti
 
+        // Controllo se tutte le domande sono state mostrate
+        if (data.message) {
+          const restart = window.confirm(
+            "Le domande sono finite! Vuoi ricominciare?"
+          );
+          if (restart) {
+            // Ricarica la pagina o chiama una funzione per ripristinare lo stato
+            location.reload();
+          }
+          return;
+        }
         document.getElementById("question").textContent = data.question;
         document.getElementById("hints").style.display = "none"; // Nasconde i suggerimenti
 
@@ -153,7 +166,6 @@
 
         document.getElementById("hints").innerHTML = hintsText;
       }
-
       // Funzione per mostrare i suggerimenti
       function showHints() {
         var hintsDiv = document.getElementById("hints");

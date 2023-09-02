@@ -17,15 +17,29 @@ def format_path(filename):
     image_path = os.path.join('static', 'uploads', filename)
     return image_path.replace("\\", "/")
 
+# Variabile globale per tenere traccia delle domande non utilizzate
+unused_questions = []
+
 # Endpoint per ottenere una domanda casuale
 @app.route('/get_question', methods=['GET'])
 def get_question():
-    # Ricarica il database delle domande
+    global unused_questions  # Dichiaro la variabile come globale per modificarla
+    
+    # Ricarico il database delle domande
     with open('questions.json', 'r') as f:
         questions_db = json.load(f)
 
-    question = random.choice(questions_db)
+    # Se la lista delle domande non utilizzate è vuota, la ricarico
+    if not unused_questions:
+        unused_questions = questions_db.copy()
+        return jsonify({"message": "Le domande sono finite, ricominciamo."})
+
+    # Seleziono una domanda casuale dalle domande non utilizzate
+    question = random.choice(unused_questions)
+    unused_questions.remove(question)  # Rimuovo la domanda selezionata dalla lista delle domande non utilizzate
+
     return jsonify(question)
+
 
 # Endpoint per aggiungere una nuova domanda
 @app.route('/add_question', methods=['POST'])
