@@ -43,22 +43,124 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-      // Funzione per modificare una domanda
+      let selectedFile = null; // Variabile per memorizzare il file dell'immagine selezionato
+
       function editQuestion(id) {
+        // Trova gli elementi HTML relativi alla domanda e ai suggerimenti
         const questionElement = document.getElementById(`question${id}`);
         const hintsElement = document.getElementById(`editableHints${id}`);
 
+        // Rendi gli elementi HTML modificabili
         questionElement.contentEditable = "true";
         hintsElement.contentEditable = "true";
 
-        questionElement.style.backgroundColor = "lightyellow";
-        hintsElement.style.backgroundColor = "lightyellow";
+        // Cambia lo sfondo per indicare che gli elementi sono ora modificabili
+        questionElement.style.backgroundColor = "#f2f2f2";
+        hintsElement.style.backgroundColor = "#f2f2f2";
 
-        const editButton = document.getElementById(`editButton${id}`);
-        editButton.style.display = "none";
+        // Mostra il campo di input per il caricamento dell'immagine e i bottoni "Salva" e "Elimina Immagine"
+        document.getElementById(`imageInput${id}`).style.display =
+          "inline-block";
+        document.getElementById(`saveButton${id}`).style.display = "inline";
+        document.getElementById(`addModifyImageButton${id}`).style.display =
+          "inline";
+        document.getElementById(`deleteImageButton${id}`).style.display =
+          "inline";
 
-        const saveButton = document.getElementById(`saveButton${id}`);
-        saveButton.style.display = "inline";
+        // Aggiungi un evento per memorizzare il file selezionato per l'immagine
+        document
+          .getElementById(`imageInput${id}`)
+          .addEventListener("change", function () {
+            selectedFile = this.files[0];
+          });
+      }
+
+      // Funzione per eliminare una domanda
+      async function deleteQuestion(id) {
+        const response = await fetch(`/delete_question/${id}`, {
+            method: 'DELETE'
+        });
+    
+        if (response.status === 200) {
+            alert("Domanda eliminata con successo");
+            // Aggiorna la lista delle domande
+            getQuestions();
+        } else {
+            alert("Si è verificato un errore durante l'eliminazione della domanda");
+        }
+    }
+    
+
+
+      // Funzione per eliminare l'immagine
+      function deleteImage(id) {
+        const formData = new FormData();
+        formData.append("deleteImage", "true");
+      
+        fetch(`/update_question/${id}`, {
+          method: "DELETE",
+          body: formData,
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.status === 200) {  // Cambia response.status in data.status
+              alert("Immagine eliminata con successo");
+            } else {
+              alert(
+                "Si è verificato un errore durante l'eliminazione dell'immagine"
+              );
+            }
+          })
+          .catch((error) => {
+            console.log("Error:", error);
+          });
+      }
+      
+      async function saveQuestion(id) {
+        // Ottieni il testo modificato della domanda e dei suggerimenti
+        const editedQuestion = document
+          .getElementById(`question${id}`)
+          .innerText.trim();
+        const editedHints = document
+          .getElementById(`editableHints${id}`)
+          .innerText.trim();
+
+        // Crea un oggetto FormData per inviare sia il testo modificato che il file immagine
+        const formData = new FormData();
+        formData.append("question", editedQuestion);
+        formData.append("hints", editedHints);
+        if (selectedFile) {
+          formData.append("newImage", selectedFile);
+        }
+
+        // Invia i dati al backend per l'aggiornamento
+        const response = await fetch(`/update_question/${id}`, {
+          method: "POST",
+          body: formData,
+        });
+
+        const data = await response.json();
+
+        // Se tutto va bene, ritorna alla modalità non modificabile
+        if (response.status === 200) {
+          alert(data.message);
+
+          // Reimposta gli attributi e gli stili originali
+          document.getElementById(`question${id}`).contentEditable = "false";
+          document.getElementById(`editableHints${id}`).contentEditable =
+            "false";
+          document.getElementById(`question${id}`).style.backgroundColor = "";
+          document.getElementById(`editableHints${id}`).style.backgroundColor =
+            "";
+
+          // Nascondi il campo di input per il caricamento dell'immagine e il bottone "Salva"
+          document.getElementById(`imageInput${id}`).style.display = "none";
+          document.getElementById(`saveButton${id}`).style.display = "none";
+        } else {
+          alert(
+            "Si è verificato un errore durante l'aggiornamento della domanda."
+          );
+        }
       }
 
       // Funzione per ottenere tutte le domande
@@ -70,83 +172,66 @@
           let card = document.createElement("div");
           card.className = "card";
           card.innerHTML = `
-          <div class="card-body">
-            <span class="card-id">ID: ${item.id}</span>
-            <div id="question${
-              item.id
-            }" class="card-title" contenteditable="false">
-              ${item.question}
-            </div>
-            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse${
-              item.id
-            }" aria-expanded="false">
-              Mostra Dettagli
-            </button>
-            <div class="collapse" id="collapse${item.id}">
-              <div id="hints${item.id}" class="card card-body">
-                <div id="editableHints${item.id}" contenteditable="false">
-                  ${item.hints.join(", ")}
-                </div>
-                ${
-                  item.image
-                    ? `<img src="${item.image}" alt="Suggerimento in immagine">`
-                    : ""
-                }
-                <button id="editButton${item.id}" onclick="editQuestion(${
+            <div class="card-body">
+    <span class="card-id">ID: ${item.id}</span>
+    <div id="question${item.id}" class="card-title" contenteditable="false">
+      ${item.question}
+    </div>
+    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse${
+      item.id
+    }" aria-expanded="false">
+      Mostra Dettagli
+    </button>
+    <div class="collapse" id="collapse${item.id}">
+      <div id="hints${item.id}" class="card card-body">
+        <div id="editableHints${item.id}" contenteditable="false">
+          ${item.hints.join(", ")}
+        </div>
+        ${
+          item.image
+            ? `<img src="${item.image}" alt="Suggerimento in immagine">`
+            : ""
+        }
+        <input type="file" id="imageInput${item.id}" style="display:none;">
+        <button id="addModifyImageButton${item.id}" onclick="showImageInput(${
+            item.id
+          })" style="display:none;">Aggiungi/Modifica Immagine</button>
+          <button id="deleteImageButton${item.id}" onclick="deleteImage(${
+            item.id
+          })" style="display:none;">Elimina Immagine</button>
+
+        <button id="editButton${item.id}" onclick="editQuestion(${
             item.id
           })">Modifica</button>
-                <button id="saveButton${item.id}" onclick="saveQuestion(${
+        <button id="saveButton${item.id}" onclick="saveQuestion(${
             item.id
           })" style="display:none;">Salva</button>
-                <button onclick="deleteQuestion(${item.id})">Elimina</button>
-              </div>
-            </div>
-          </div>
-        `;
+        <button onclick="deleteQuestion(${item.id})">Elimina domanda</button>
+      </div>
+    </div>
+  </div>
+`;
 
           questionGrid.appendChild(card);
         });
       }
 
-      // Funzione per salvare una domanda
+      function uploadImage(id, file) {
+        const formData = new FormData();
+        formData.append("newImage", file);
 
-      function saveQuestion(id) {
-        let editedQuestion = document
-          .getElementById(`question${id}`)
-          .innerText.trim();
-        let editedHints = document
-          .getElementById(`editableHints${id}`)
-          .innerText.replace("Suggerimenti: ", "")
-          .trim();
-
-        fetch(`/update_question/${id}`, {
+        fetch(`/update_question_with_image/${id}`, {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            question: editedQuestion,
-            hints: editedHints.split(", "),
-          }),
+          body: formData,
         })
           .then((response) => response.json())
           .then((data) => {
-            alert('Domanda salvata con successo!');
-            // Torna alla modalità di visualizzazione non modificabile
-            const questionElement = document.getElementById(`question${id}`);
-            const hintsElement = document.getElementById(`editableHints${id}`);
-            questionElement.contentEditable = "false";
-            hintsElement.contentEditable = "false";
-            questionElement.style.backgroundColor = "";
-            hintsElement.style.backgroundColor = "";
-            
-            const editButton = document.getElementById(`editButton${id}`);
-            editButton.style.display = "inline";
-            
-            const saveButton = document.getElementById(`saveButton${id}`);
-            saveButton.style.display = "none";
+            alert("Immagine aggiornata con successo");
           })
-        }
+          .catch((error) => {
+            console.log("Error:", error);
+          });
+      }
 
       // Quando il documento è completamente caricato
       document.addEventListener("DOMContentLoaded", function () {

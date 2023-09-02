@@ -19,7 +19,12 @@ except FileNotFoundError:
 
 def format_path(filename):
     image_path = os.path.join('static', 'uploads', filename)
+    # Corregge il percorso duplicato se presente
+    image_path = image_path.replace("static/uploads/static/uploads/", "static/uploads/")
+    # Assicura che il percorso sia sempre "static/uploads/"
     return image_path.replace("\\", "/")
+
+
 
 
 # Variabile globale per tenere traccia delle domande non utilizzate
@@ -96,20 +101,43 @@ def get_all_questions():
         questions_db = json.load(f)
     return jsonify(questions_db)
 
-# Funzione per aggiornare una domanda
-
-
 @app.route('/update_question/<int:question_id>', methods=['POST'])
 def update_question(question_id):
-    new_details = request.json
-    # Trova la domanda con l'ID specificato e aggiorna i dettagli
+    edited_question = request.form.get('question')
+    edited_hints = request.form.get('hints')
+    
+    if edited_hints:
+        edited_hints = edited_hints.split(", ")
+    else:
+        edited_hints = []
+
+    image_file = request.files.get('newImage')
+    delete_image = request.form.get('deleteImage')  # Aggiungi questa linea
+
     for question in questions_db:
         if question['id'] == question_id:
-            question.update(new_details)
+            if edited_question:
+                question['question'] = edited_question
+            if edited_hints:
+                question['hints'] = edited_hints
+
+            if image_file:
+                filename = secure_filename(image_file.filename)
+                if not os.path.exists('static/uploads'):
+                    os.makedirs('static/uploads')
+                image_file.save(os.path.join('static/uploads', filename))
+                image_path = format_path(filename)  # Usare solo il nome del file
+                question['image'] = image_path
+            elif delete_image:  # Aggiungi questa condizione
+                question.pop('image', None)
+
             with open('questions.json', 'w') as f:
                 json.dump(questions_db, f)
+
             return jsonify({"message": "Domanda aggiornata con successo"}), 200
+
     return jsonify({"message": "Domanda non trovata"}), 404
+
 
 # Funzione per eliminare una domanda
 
@@ -123,13 +151,6 @@ def delete_question(question_id):
                 json.dump(questions_db, f)
             return jsonify({"message": "Domanda eliminata con successo"}), 200
     return jsonify({"message": "Domanda non trovata"}), 404
-
-
-# Funzione per formattare il percorso del file
-
-
-def format_path(filepath):
-    return filepath.replace("\\", "/")
 
 
 # Endpoint per la pagina principale
