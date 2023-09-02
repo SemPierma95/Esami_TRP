@@ -12,7 +12,7 @@
     "question": "Che differenza c'\u00e8 tra neuroni che codificano lo scopo e neuroni che codificano il tipo di atto in premotoria?",
     "hints": [
       "Nel primo esperimento il neurone spara sia che la scimmia esegua una presa con la mano destra o sinistra",
-      " i neuroni specifici per il tipo di atto motorio codificano se quella che sta avvenendo \u00e8 una presa di precisione o di potenza. Sono indifferenti rispetto alla mano ma non rispetto al tipo di presa"
+      "i neuroni specifici per il tipo di atto motorio codificano se quella che sta avvenendo \u00e8 una presa di precisione o di potenza. Sono indifferenti rispetto alla mano ma non rispetto al tipo di presa"
     ],
     "id": 2
   },
@@ -218,7 +218,7 @@
     ],
     "id": 20
   },
-  { "question": null, "hints": [], "id": 21 },
+  { "question": "Questa \u00e8 una prova #2", "hints": ["Prova #2"], "id": 21 },
   {
     "question": "Come si chiama Fogassi di nome?",
     "hints": ["Leonardo"],

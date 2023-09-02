@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="icon"
+      href="{{ url_for('static', filename='favicon.ico') }}"
+      type="image/x-icon"
+    />
+    <title>Gestione Domande</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      /* Apple-like style */
+      body {
+        background-color: #f9f9f9;
+        color: #333;
+        font-family: "Helvetica Neue", sans-serif;
+        text-align: center;
+        font-size: 1.2rem;
+      }
+      .container {
+        max-width: auto;
+        margin: auto;
+      }
+      .btn {
+        background-color: #007aff;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h1>Gestione delle Domande</h1>
+      <div id="questionGrid">
+        <!-- Le domande saranno popolate dinamicamente qui -->
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+      // Funzione per modificare una domanda
+      function editQuestion(id) {
+        const questionElement = document.getElementById(`question${id}`);
+        const hintsElement = document.getElementById(`editableHints${id}`);
+
+        questionElement.contentEditable = "true";
+        hintsElement.contentEditable = "true";
+
+        questionElement.style.backgroundColor = "lightyellow";
+        hintsElement.style.backgroundColor = "lightyellow";
+
+        const editButton = document.getElementById(`editButton${id}`);
+        editButton.style.display = "none";
+
+        const saveButton = document.getElementById(`saveButton${id}`);
+        saveButton.style.display = "inline";
+      }
+
+      // Funzione per ottenere tutte le domande
+      async function getQuestions() {
+        const response = await fetch("/get_all_questions");
+        const data = await response.json();
+        let questionGrid = document.getElementById("questionGrid");
+        data.forEach((item) => {
+          let card = document.createElement("div");
+          card.className = "card";
+          card.innerHTML = `
+          <div class="card-body">
+            <span class="card-id">ID: ${item.id}</span>
+            <div id="question${
+              item.id
+            }" class="card-title" contenteditable="false">
+              ${item.question}
+            </div>
+            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse${
+              item.id
+            }" aria-expanded="false">
+              Mostra Dettagli
+            </button>
+            <div class="collapse" id="collapse${item.id}">
+              <div id="hints${item.id}" class="card card-body">
+                <div id="editableHints${item.id}" contenteditable="false">
+                  ${item.hints.join(", ")}
+                </div>
+                ${
+                  item.image
+                    ? `<img src="${item.image}" alt="Suggerimento in immagine">`
+                    : ""
+                }
+                <button id="editButton${item.id}" onclick="editQuestion(${
+            item.id
+          })">Modifica</button>
+                <button id="saveButton${item.id}" onclick="saveQuestion(${
+            item.id
+          })" style="display:none;">Salva</button>
+                <button onclick="deleteQuestion(${item.id})">Elimina</button>
+              </div>
+            </div>
+          </div>
+        `;
+
+          questionGrid.appendChild(card);
+        });
+      }
+
+      // Funzione per salvare una domanda
+
+      function saveQuestion(id) {
+        let editedQuestion = document
+          .getElementById(`question${id}`)
+          .innerText.trim();
+        let editedHints = document
+          .getElementById(`editableHints${id}`)
+          .innerText.replace("Suggerimenti: ", "")
+          .trim();
+
+        fetch(`/update_question/${id}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            question: editedQuestion,
+            hints: editedHints.split(", "),
+          }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            alert('Domanda salvata con successo!');
+            // Torna alla modalità di visualizzazione non modificabile
+            const questionElement = document.getElementById(`question${id}`);
+            const hintsElement = document.getElementById(`editableHints${id}`);
+            questionElement.contentEditable = "false";
+            hintsElement.contentEditable = "false";
+            questionElement.style.backgroundColor = "";
+            hintsElement.style.backgroundColor = "";
+            
+            const editButton = document.getElementById(`editButton${id}`);
+            editButton.style.display = "inline";
+            
+            const saveButton = document.getElementById(`saveButton${id}`);
+            saveButton.style.display = "none";
+          })
+        }
+
+      // Quando il documento è completamente caricato
+      document.addEventListener("DOMContentLoaded", function () {
+        getQuestions(); // Carica tutte le domande
+      });
+    </script>
+  </body>
+</html>

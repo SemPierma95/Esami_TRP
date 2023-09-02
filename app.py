@@ -87,6 +87,43 @@ def add_question():
 
     return jsonify(new_entry), 201
 
+# funzione per mostrare tutte le domande
+
+
+@app.route('/get_all_questions', methods=['GET'])
+def get_all_questions():
+    with open('questions.json', 'r') as f:
+        questions_db = json.load(f)
+    return jsonify(questions_db)
+
+# Funzione per aggiornare una domanda
+
+
+@app.route('/update_question/<int:question_id>', methods=['POST'])
+def update_question(question_id):
+    new_details = request.json
+    # Trova la domanda con l'ID specificato e aggiorna i dettagli
+    for question in questions_db:
+        if question['id'] == question_id:
+            question.update(new_details)
+            with open('questions.json', 'w') as f:
+                json.dump(questions_db, f)
+            return jsonify({"message": "Domanda aggiornata con successo"}), 200
+    return jsonify({"message": "Domanda non trovata"}), 404
+
+# Funzione per eliminare una domanda
+
+
+@app.route('/delete_question/<int:question_id>', methods=['DELETE'])
+def delete_question(question_id):
+    for question in questions_db:
+        if question['id'] == question_id:
+            questions_db.remove(question)
+            with open('questions.json', 'w') as f:
+                json.dump(questions_db, f)
+            return jsonify({"message": "Domanda eliminata con successo"}), 200
+    return jsonify({"message": "Domanda non trovata"}), 404
+
 
 # Funzione per formattare il percorso del file
 
@@ -106,6 +143,12 @@ def index():
 @app.route('/favicon.ico')
 def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
+
+
+@app.route('/edit_questions', methods=['GET'])
+def edit_questions():
+    return render_template('edit_questions.html')
+
 
 
 if __name__ == '__main__':
