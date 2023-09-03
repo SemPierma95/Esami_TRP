@@ -38,10 +38,18 @@
         object-fit: cover;
         margin-left: 10px;
       }
+      .reset-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: #ff0000;
+        color: white;
+      }
     </style>
   </head>
   <body>
     <div class="container mt-5">
+      <button id="resetSessionButton" class="btn reset-button">Reset Sessione</button>
       <h1>Gestione delle Domande</h1>
       <div class="col-md-12">
         <a href="/" class="btn btn-warning"
@@ -233,6 +241,16 @@
         }
       }
 
+      async function resetSession() {
+        const response = await fetch('/reset_session');
+        if (response.status === 200) {
+          const data = await response.json();
+          alert(data.message);
+        } else {
+          alert("Errore nel reset della sessione.");
+        }
+      }
+
       async function getQuestions() {
         const response = await fetch("/get_all_questions");
         const data = await response.json();
@@ -348,6 +366,8 @@
       // Quando il documento è completamente caricato
       document.addEventListener("DOMContentLoaded", function () {
         getQuestions(); // Carica tutte le domande
+        const resetButton = document.getElementById("resetSessionButton");
+        resetButton.addEventListener('click', resetSession);
       });
     </script>
   </body>
