@@ -1,0 +1,31 @@
+body {
+  background-color: #f9f9f9;
+  color: #333;
+  font-family: "Helvetica Neue", sans-serif;
+  text-align: center;
+  font-size: 1.2rem;
+}
+.container {
+  max-width: 600px;
+  margin: auto;
+}
+.btn {
+  background-color: #007aff;
+  color: white;
+}
+#hints {
+  text-align: justify;
+  text-justify: inter-word;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+.img-container,
+.text-container {
+  display: block;
+  margin-bottom: 15px;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}

@@ -13,38 +13,18 @@
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
       rel="stylesheet"
     />
-    <style>
-      /* Stile alla Apple */
-      body {
-        background-color: #f9f9f9;
-        color: #333;
-        font-family: "Helvetica Neue", sans-serif;
-        text-align: center;
-        font-size: 1.2rem;
-      }
-      .container {
-        max-width: 600px;
-        margin: auto;
-      }
-      .btn {
-        background-color: #007aff;
-        color: white;
-      }
-      #hints {
-        text-align: justify;
-        text-justify: inter-word;
-        padding-left: 2rem;
-        padding-right: 2rem;
-      }
-    </style>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <style></style>
   </head>
 
   <body>
     <div class="container-fluid mt-5">
       <h1>Domanda:</h1>
       <p id="question"></p>
-      <button class="btn" onclick="showHints()">Mostra Suggerimenti</button>
-      <button class="btn" onclick="hideHints()">Nascondi Suggerimenti</button>
+      <button class="btn btn-hints btn-primary" onclick="toggleHints()">Mostra Suggerimenti</button>
 
       <!-- Inizialmente nascosto -->
 
@@ -59,7 +39,7 @@
       >
         ^ Aggiungi una Nuova Domanda
       </button>
-      <div id="hints" style="display: none; padding: 20 20px"></div>
+      <div id="hints" style="display: none; padding:20px"></div>
 
       <!-- Sezione collassabile -->
       <div class="collapse" id="addQuestionSection" style="margin-top: 1rem">
@@ -93,11 +73,12 @@
       <h2 class="mt-5">Rispondi ad una Domanda</h2>
       <button class="btn" onclick="getRandomQuestion()">Nuova Domanda</button>
     </div>
-  <!-- Aggiungi un bottone di diverso colore -->
-  <div style="height: 50px"></div>
-<div class="col-md-12"><a href="edit_questions" class="btn btn-warning">Vai all'editor</a></div>
+    <!-- Aggiungi un bottone di diverso colore -->
+    <div style="height: 50px"></div>
+    <div class="col-md-12">
+      <a href="edit_questions" class="btn btn-warning">Vai all'editor</a>
+    </div>
 
-  
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -161,8 +142,8 @@
         let hintsText = convertToList(data.hints.join("\n"));
         if (data.image) {
           hintsText =
-            `<img src="${data.image}" alt="Suggerimento in immagine">` +
-            hintsText;
+            `<div class="img-container"><img src="${data.image}" alt="Suggerimento in immagine" class="img-fluid"></div>` +
+            `<div class="text-container">${hintsText}</div>`;
         }
 
         // Controlla se il suggerimento contiene la parola "Importante"
@@ -197,6 +178,27 @@
             event.preventDefault(); // Previene l'invio del form
           }
         });
+
+      let hintsVisible = false;
+
+      function toggleHints() {
+        const hintsDiv = document.getElementById("hints");
+        const button = document.querySelector(".btn-hints");
+
+        hintsVisible = !hintsVisible;
+
+        if (hintsVisible) {
+          hintsDiv.style.display = "block";
+          button.textContent = "Nascondi Suggerimenti";
+          button.classList.remove("btn-primary");
+          button.classList.add("btn-danger");
+        } else {
+          hintsDiv.style.display = "none";
+          button.textContent = "Mostra Suggerimenti";
+          button.classList.remove("btn-danger");
+          button.classList.add("btn-primary");
+        }
+      }
 
       // Quando il documento è completamente caricato
       document.addEventListener("DOMContentLoaded", function () {
