@@ -1,7 +1,8 @@
 /flask_session/
 /.vscode/
 /__pycache__/
-templates/index.html
 .DS_Store
 .pytest_cache
 *.pyc
+.benchmarks
+
