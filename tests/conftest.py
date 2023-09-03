@@ -1,5 +1,15 @@
+import os
 import sys
-sys.path.append('/mnt/c/Users/paolo/Documents/Progetti di coding/University_Test')
+
+# Ottieni la directory corrente del file di script
+current_directory = os.path.dirname(os.path.abspath(__file__))
+
+# Risali alla directory root
+root_directory = os.path.join(current_directory, '..')
+
+# Aggiungi la root_directory al sys.path
+sys.path.append(root_directory)
+
 
 # conftest.py
 import pytest

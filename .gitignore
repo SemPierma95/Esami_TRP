@@ -4,3 +4,4 @@
 templates/index.html
 .DS_Store
 .pytest_cache
+*.pyc

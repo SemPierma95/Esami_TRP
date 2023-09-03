@@ -14,6 +14,13 @@ try:
         questions_db = json.load(f)
 except FileNotFoundError:
     questions_db = []
+    
+    
+@app.route('/reset_session', methods=['GET'])
+def reset_session():
+    session.clear()
+    return jsonify({"message": "Sessione resettata"})
+
 
 @app.route('/debug_session')
 def debug_session():
@@ -41,7 +48,7 @@ def get_question():
     unused_question_ids = session['unused_question_ids']
 
     if not unused_question_ids:
-        session['unused_question_ids'] = [q['id'] for q in questions_db]
+        session.pop('unused_question_ids', None)  # Elimina la chiave dalla sessione
         return jsonify({"message": "Le domande sono finite, ricominciamo."})
 
     random_id = random.choice(unused_question_ids)
@@ -50,6 +57,8 @@ def get_question():
     session['unused_question_ids'] = unused_question_ids
 
     return jsonify(question)
+
+
 
 
 
