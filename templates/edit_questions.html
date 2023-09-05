@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
       rel="icon"
@@ -14,6 +15,7 @@
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
       rel="stylesheet"
     />
+
     <style>
       /* Apple-like style */
       body {
@@ -49,7 +51,9 @@
   </head>
   <body>
     <div class="container mt-5">
-      <button id="resetSessionButton" class="btn reset-button">Reset Sessione</button>
+      <button id="resetSessionButton" class="btn reset-button">
+        Reset Sessione
+      </button>
       <h1>Gestione delle Domande</h1>
       <div class="col-md-12">
         <a href="/" class="btn btn-warning"
@@ -161,14 +165,15 @@
         const editedQuestion = document
           .getElementById(`question${id}`)
           .innerText.trim();
-        const editedHints = document
-          .getElementById(`editableHints${id}`)
-          .innerText.trim();
+        const editedHints = document.getElementById(
+          `editableHints${id}`
+        ).innerText.replace(/<br>/g, '\n');
 
         // Crea un oggetto FormData per inviare sia il testo modificato che il file immagine
         const formData = new FormData();
         formData.append("question", editedQuestion);
         formData.append("hints", editedHints);
+
         if (selectedFile) {
           formData.append("newImage", selectedFile);
         }
@@ -242,7 +247,7 @@
       }
 
       async function resetSession() {
-        const response = await fetch('/reset_session');
+        const response = await fetch("/reset_session");
         if (response.status === 200) {
           const data = await response.json();
           alert(data.message);
@@ -255,56 +260,73 @@
         const response = await fetch("/get_all_questions");
         const data = await response.json();
         let questionGrid = document.getElementById("questionGrid");
+        questionGrid.innerHTML = ""; // Pulisci i vecchi dati se necessario
 
         data.forEach((item) => {
+          let hints = typeof item.hints === 'string' ? item.hints.replace(/\n/g, '<br>') : item.hints;
           let imageHTML = item.image
             ? `<img id="previewImage${item.id}" class="img-preview" src="${item.image}" alt="">`
             : "";
+
           let card = document.createElement("div");
           card.className = "card";
+
           card.innerHTML = `
-            <div class="card-body">
-              <span class="card-id">ID: ${item.id}</span>
-              ${imageHTML}
-              <div id="question${
-                item.id
-              }" class="card-title" contenteditable="false">
-                ${item.question}
-              </div>
-    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse${
-      item.id
-    }" aria-expanded="false">
-      Mostra Dettagli
-    </button>
-    <div class="collapse" id="collapse${item.id}">
-      <div id="hints${item.id}" class="card card-body">
-        <div id="editableHints${item.id}" contenteditable="false">
-          ${item.hints.join(", ")}
-        </div>
-        ${
-          item.image
-            ? `<img src="${item.image}" alt="Suggerimento in immagine">`
-            : ""
-        }
-        <input type="file" id="imageInput${item.id}" style="display:none;">
-        <button id="addModifyImageButton${item.id}" onclick="showImageInput(${
+                      <div class="card-body">
+                          <span class="card-id">ID: ${item.id}</span>
+                          ${imageHTML}
+                          <div id="question${
+                            item.id
+                          }" class="card-title" contenteditable="false">
+                              ${item.question}
+                          </div>
+                          <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse${
+                            item.id
+                          }" aria-expanded="false">
+                              Mostra Dettagli
+                          </button>
+                          <div class="collapse" id="collapse${item.id}">
+                              <div id="hints${item.id}" class="card card-body">
+                                  <div id="editableHints${
+                                    item.id
+                                  }" contenteditable="false">
+                                  ${item.hints.replace(/\n/g, '<br>')}
+                                </div>
+                                  ${
+                                    item.image
+                                      ? `<img src="${item.image}" alt="Suggerimento in immagine">`
+                                      : ""
+                                  }
+                                  <input type="file" id="imageInput${
+                                    item.id
+                                  }" style="display:none;">
+                                  <button id="addModifyImageButton${
+                                    item.id
+                                  }" onclick="showImageInput(${
             item.id
           })" style="display:none;">Aggiungi/Modifica Immagine</button>
-          <button id="deleteImageButton${item.id}" onclick="deleteImage(${
+                                  <button id="deleteImageButton${
+                                    item.id
+                                  }" onclick="deleteImage(${
             item.id
           })" style="display:none;">Elimina Immagine</button>
-
-        <button id="editButton${item.id}" onclick="editQuestion(${
+                                  <button id="editButton${
+                                    item.id
+                                  }" onclick="editQuestion(${
             item.id
           })">Modifica</button>
-        <button id="saveButton${item.id}" onclick="saveQuestion(${
+                                  <button id="saveButton${
+                                    item.id
+                                  }" onclick="saveQuestion(${
             item.id
           })" style="display:none;">Salva</button>
-        <button onclick="deleteQuestion(${item.id})">Elimina domanda</button>
-      </div>
-    </div>
-  </div>
-`;
+                                  <button onclick="deleteQuestion(${
+                                    item.id
+                                  })">Elimina domanda</button>
+                              </div>
+                          </div>
+                      </div>
+                  `;
 
           questionGrid.appendChild(card);
         });
@@ -326,7 +348,7 @@
             console.log("Error:", error);
           });
       }
-      
+
       // Funzione per eliminare una domanda
       async function deleteQuestion(id) {
         const confirmation = window.confirm(
@@ -367,7 +389,7 @@
       document.addEventListener("DOMContentLoaded", function () {
         getQuestions(); // Carica tutte le domande
         const resetButton = document.getElementById("resetSessionButton");
-        resetButton.addEventListener('click', resetSession);
+        resetButton.addEventListener("click", resetSession);
       });
     </script>
   </body>

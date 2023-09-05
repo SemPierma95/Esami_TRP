@@ -29,3 +29,8 @@ body {
   max-width: 100%;
   height: auto;
 }
+
+#myGreenButton {
+  background-color: #28a745;  /* Cambia questo valore per il tuo specifico verde */
+  color: white;  /* Imposta il colore del testo a bianco */
+}

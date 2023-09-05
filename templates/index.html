@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
       rel="icon"
@@ -24,7 +25,16 @@
     <div class="container-fluid mt-5">
       <h1>Domanda:</h1>
       <p id="question"></p>
-      <button class="btn btn-hints btn-primary" onclick="toggleHints()">Mostra Suggerimenti</button>
+      <button class="btn btn-hints btn-primary" onclick="toggleHints()">
+        Mostra Suggerimenti
+      </button>
+      <button
+        class="btn btn-success"
+        id="myGreenButton"
+        onclick="getRandomQuestion()"
+      >
+        Nuova Domanda
+      </button>
 
       <!-- Inizialmente nascosto -->
 
@@ -39,7 +49,7 @@
       >
         ^ Aggiungi una Nuova Domanda
       </button>
-      <div id="hints" style="display: none; padding:20px"></div>
+      <div id="hints" style="display: none; padding: 20px"></div>
 
       <!-- Sezione collassabile -->
       <div class="collapse" id="addQuestionSection" style="margin-top: 1rem">
@@ -69,9 +79,14 @@
           <button type="submit" class="btn mt-2">Aggiungi</button>
         </form>
       </div>
-
-      <h2 class="mt-5">Rispondi ad una Domanda</h2>
-      <button class="btn" onclick="getRandomQuestion()">Nuova Domanda</button>
+      <div id="imagePreviewContainer" style="margin-top: 1rem">
+        <img
+          id="imagePreview"
+          src="#"
+          alt="Anteprima dell'immagine"
+          style="display: none; width: auto; height: auto"
+        />
+      </div>
     </div>
     <!-- Aggiungi un bottone di diverso colore -->
     <div style="height: 50px"></div>
@@ -106,17 +121,27 @@
 
       // Funzione per convertire il testo in una lista HTML se contiene marcatori di lista
       function convertToList(text) {
+        // Se il testo contiene "- ", allora crea una lista
         if (text.includes("- ")) {
           const listItems = text.split("- ").slice(1); // Rimuove il primo elemento vuoto
           const listHTML = listItems
             .map((item) => `<li>${item.replace(/\n/g, "<br>")}</li>`)
             .join("");
-          return `<ol>${listHTML}</ol>`;
+          return `<ul>${listHTML}</ul>`;
         }
+        // Altrimenti, sostituisci solo i caratteri di "a capo" con <br>
         return text.replace(/\n/g, "<br>");
       }
+
       // Funzione per ottenere una domanda casuale
       async function getRandomQuestion() {
+        // resetta il bottone dei suggerimenti
+        hintsVisible = false;
+        const hintsButton = document.querySelector(".btn-hints");
+        hintsButton.textContent = "Mostra Suggerimenti";
+        hintsButton.classList.remove("btn-danger");
+        hintsButton.classList.add("btn-primary");
+        // interroga l'API
         const response = await fetch("/get_question", {
           method: "GET",
         });
@@ -139,7 +164,7 @@
         document.getElementById("hints").style.display = "none"; // Nasconde i suggerimenti
 
         // Applica la formattazione
-        let hintsText = convertToList(data.hints.join("\n"));
+        let hintsText = convertToList(data.hints); // Modifica qui, non più join
         if (data.image) {
           hintsText =
             `<div class="img-container"><img src="${data.image}" alt="Suggerimento in immagine" class="img-fluid"></div>` +
@@ -199,6 +224,25 @@
           button.classList.add("btn-primary");
         }
       }
+
+      // Funzione per mostrare l'anteprima dell'immagine
+      function showImagePreview(event) {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+          const imagePreview = document.getElementById("imagePreview");
+          imagePreview.src = e.target.result;
+          imagePreview.style.display = "block";
+        };
+
+        reader.readAsDataURL(file);
+      }
+
+      // Evento per l'input del file
+      document
+        .getElementById("newImage")
+        .addEventListener("change", showImagePreview);
 
       // Quando il documento è completamente caricato
       document.addEventListener("DOMContentLoaded", function () {
