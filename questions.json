@@ -586,10 +586,10 @@
         "id": 54,
         "question": "Come sono i neuroni motori del lobulo parietale inferiore?",
         "hints": [
-            "Come si vede nel grafico il neurone 8 risponde sia quando la scimmia afferra un pezzo di cibo con la mano sia quando lo afferra con la bocca. Cos\u00ec come fanno i neuroni motori di F5.Essendo un neurone che risponde sia per la mano che per la bocca \u00e8 una neurone o di PF o di PFG.\r\n\r\nIl neurone 75 \u00e8 un neurone che scarica prima che la mano tocchi l'oggetto",
+            "Sono neuroni molto simili a quelli dell'area F5 e F4\r\n\r\n\u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0Come si vede nel grafico il neurone 8 risponde sia quando la scimmia afferra un pezzo di cibo con la mano sia quando lo afferra con la bocca. Cos\u00ec come fanno i neuroni motori di F5.Essendo un neurone che risponde sia per la mano che per la bocca \u00e8 una neurone o di PF o di PFG. Il neurone 75 \u00e8 un neurone che scarica prima che la mano tocchi l'oggetto",
             "quindi \u00e8 presumibilmente un neurone che codifica per il raggiungimento",
             "quindi probabilmente un neurone di PG. Come si vede dal grafico lo stesso neurone non scarica se la scimmia fa lo stesso movimento",
-            "ma senza alcuno scopo. Nell'area F4 ci sono tanti neuroni che si comportano allo stesso modo. Quindi \u00e8 importante che la codifica sia relativa all'atto e non al movimento.\r\n\r\nImportante: questi non sono neuroni mirror",
+            "ma senza alcuno scopo. Nell'area F4 ci sono tanti neuroni che si comportano allo stesso modo. Quindi \u00e8 importante che la codifica sia relativa all'atto e non al movimento. Importante: questi non sono neuroni mirror",
             "ma sono neuroni motori come quelli di F5 e di F4"
         ],
         "image": "static/uploads/esempi-di-mirror-parietali.jpg"
@@ -779,10 +779,10 @@
         "id": 68,
         "question": "Cosa hanno evidenziato i primi studi fatti con fMRI sul sistema mirror?",
         "hints": [
-            "Tra i primi studi fatti con fMRI si \u00e8 andati a studiare le attivazioni nel cervello di esseri umani durante l'osservazione di tre compiti:\r\n- afferramento di una mela con la bocca\r\n- afferramento di un bicchiere con la mano\r\n- utilizzo di un pedale con il piede\r\n\r\nQueste condizioni erano anche proposte senza l'oggetto",
-            "quindi solo con la pantomima.\r\nTramite fMRI facendo un confronto tra immagini statiche e immagini in movimento si sono osservate delle attivazioni:\r\n- nella corteccia premotoria\r\n- nella corteccia parietale solamente quando era presente l'oggetto\r\n- la corteccia temporale non \u00e8 attiva perch\u00e9 scompare dalla sottrazione tra l'immagine statica e quella dinamica\r\n\r\nLe attivazioni inoltre mostravano una somatotopia delle azioni osservate. Con le azioni di bocca che attivavano le regioni pi\u00f9 anteriori della corteccia premotoria",
+            "Tra i primi studi fatti con fMRI si \u00e8 andati a studiare le attivazioni nel cervello di esseri umani durante l'osservazione di tre compiti: - afferramento di una mela con la bocca - afferramento di un bicchiere con la mano - utilizzo di un pedale con il piede Queste condizioni erano anche proposte senza l'oggetto",
+            "quindi solo con la pantomima. Tramite fMRI facendo un confronto tra immagini statiche e immagini in movimento si sono osservate delle attivazioni: - nella corteccia premotoria - nella corteccia parietale solamente quando era presente l'oggetto - la corteccia temporale non \u00e8 attiva perch\u00e9 scompare dalla sottrazione tra l'immagine statica e quella dinamica Le attivazioni inoltre mostravano una somatotopia delle azioni osservate. Con le azioni di bocca che attivavano le regioni pi\u00f9 anteriori della corteccia premotoria",
             "quelle di mano un po' pi\u00f9 anteriori e dorsali e quelle di piede ancora pi\u00f9 dorsali. Un pattern simile si osserva anche per la corteccia parietale",
-            "con una maggiore sovrapposizione di aree ma comunque con una organizzazione che vede le regioni della corteccia parietale inferiore negli atti di mano e di bocca e la corteccia parietale superiore per gli atti di piede."
+            "con una maggiore sovrapposizione di aree ma comunque con una organizzazione che vede le regioni della corteccia parietale inferiore negli atti di mano e di bocca e la corteccia parietale superiore per gli atti di piede.\r\n\r\nImportante: Buccino 2001"
         ],
         "image": "static/uploads/fmri-mirror.jpg"
     },
@@ -799,5 +799,50 @@
             "esecuzione e immaginazione attivano sempre il circuito mirror. Inoltre un atto di raggiungimento con il braccio coinvolge l'attivazione di un sistema pi\u00f9 dorsale che coinvolge la premotoria dorsale e il lobulo parietale superiore. Quindi la componente prossimale dell'atto \u00e8 rappresentata in porzioni pi\u00f9 dorsali del sistema mirror."
         ],
         "image": "static/uploads/fmri-mirror-uomo-2.jpg"
+    },
+    {
+        "id": 70,
+        "question": "Quali aree sono coinvolte nel circuito della comprensione delle azioni nell'uomo?",
+        "hints": [
+            "Nel sistema specchio troviamo che azioni di mano e di bocca attivano: - corteccia premotoria ventrale (PMV) che si trova sotto al solco frontale superiore prima della corteccia motrice primaria e delimitatata dal solco precentrale. Omologa di F4 e parte di F5. - il lobulo parietale inferiore con una parte del giro sovramarginale e una parte del giro angolare. - il giro frontale inferiore (IFG) che si trova nel limite anteriore della corteccia premotoria e prosegue anteriormente lungo il solco frontale inferiore a comprendere l'area 44 e parte dell'area 45 di Broadman. Questa parte \u00e8 omologa a parte dell'area F5 in particolare quella disgranulare. - il solco temporale superiore. Quando invece sono azioni di raggiungimento fatto con il braccio o con gli arti inferiori abbiamo una attivazione: - della corteccia premotoria dorsale che si trova sopra alla premotoria ventrale",
+            "sopra al solco frontale superiore - il lobulo parietale superiore che si trova sopra al solco parietale superiore - sempre il solco temporale superiore. Per quel che riguarda il giro sovramarginale questo si attiva durante l'osservazione di atti eseguiti con strumenti",
+            "mentre il giro angolare si attiva durante l'osservazione di atti con una semantica.\r\n\r\n\u00a0Importante: il sistema mirror \u00e8 di fatto derivato dal sistema motorio",
+            "quindi il modo attraverso cui noi comprendiamo le azioni degli altri si basa primariamente sul funzionamento del sistema motorio."
+        ],
+        "image": "static/uploads/circuito_comprensione_delle_azioni_nelluomo.png"
+    },
+    {
+        "id": 71,
+        "question": "Osservazione di atti motori eseguiti con uno strumento",
+        "hints": [
+            "E' stato fatto uno studio per vedere che cosa succede al sistema specchio quando osserviamo un atto motorio svolto da uno strumento. In questo caso il soggetto doveva vedere una serie di atti di afferramento eseguiti con una mano o con uno strumenti. Sia nell'afferramento con la mano che nell'afferramento con lo strumento si attiva comunque il sistema mirror.\r\n\r\nSe andiamo a fare una differenza tra la situazione con lo strumento e quella con la sola mano vediamo che resta attiva un'area del lobo parietale inferiore che \u00e8 un'area che si attiva nell'uomo durante l'osservazione dell'uso di strumenti ed \u00e8 un'area che manca alla scimmia. Quindi \u00e8 possibile ipotizzare che la presenza di questa area nel nostro parietale ci consenta l'uso cos\u00ec immediato e semplice di strumenti",
+            "area che",
+            "anche se la scimmia impara ad utilizzare uno strumento come un rastrello",
+            "comunque non si attiva. \r\n\r\nImportante: potrebbe essere una specificit\u00e0 solo umana."
+        ],
+        "image": "static/uploads/atti_motori_con_strumenti.png"
+    },
+    {
+        "id": 72,
+        "question": "Come \u00e8 stato per la prima volta studiato il sistema specchio tramite EEG?",
+        "hints": [
+            "Il sistema specchio pu\u00f2 essere studiato non solamente con la risonanza magnetica funzionale ma anche attraverso l'EEG. Nello specifico il ritmo Mu che ha una frequenza di 8 - 13 Hz e circa 4-8 microampere di intensit\u00e0 viene studiato a livello del giro precentrale",
+            "riflettendo quindi una attivazione dei neuroni della corteccia premotoria.\r\n\r\nIn uno studio venivano presentati al soggetto una serie di condizioni:\r\n- in una il soggetto vedeva una mano stesa dentro ad una sorta di C fatta di legno\r\n- la mano poteva anche configurare la pantomima di un afferramento\r\n- poteva anche afferrare un pezzo del legno\r\n- Il soggetto infine andava direttamente ad afferrare un pezzo di legno\r\n\r\nE' stato osservato che la massima desincronizzazione",
+            "dovuta all'attivit\u00e0 dei neuroni che scaricano non pi\u00f9 tutti in fase quindi c'\u00e8 una riduzione della ampiezza e un aumento della frequenza (unito all'aumento degli eventi onda) era massima per la condizione di esecuzione",
+            "poi era leggermente ridotta per la condizione di osservazione dell'atto",
+            "poi ancora pi\u00f9 ridotta per la pantomima e infine ridotta ancora di pi\u00f9 quando la mano \u00e8 ferma."
+        ],
+        "image": "static/uploads/ritmo_mu.png"
+    },
+    {
+        "id": 73,
+        "question": "Importanza degli studi elettrofisiologici nei bambini",
+        "hints": [
+            "Lo studio del sistema mirror nei bambini molto piccoli \u00e8 importante in quanto consente di capire quando il sistema mirror si sviluppa e come evolve nel soggetto. Per studiare il sistema mirror in bambini molto piccoli non \u00e8 per\u00f2 possibile utilizzare la risonanza",
+            "si possono utilizzare l'EEG studiando la desincronizzazione del Mu",
+            "oppure \u00e8 stata usata la Spettroscopia a Raggi Infrarossi.\r\n\r\nIn uno studio di Fecteau bambini di 3 anni avevano una desincronizzazione della banda alpha sia quando osservavano disegnare sia quando disegnavano loro stessi.\r\nLepage e Theoret su bambini dai 4 agli 11 anni hanno evidenziato una desincronizzazione del ritmo mu durante l'osservazione e durante l'esecuzione di atti di afferramento.\r\n\r\nShimada e Iraki hanno studiato bambini di 6 mesi attraverso l'elettroscopia a raggi infrarossi evidenziando che c'\u00e8 una maggiore attivit\u00e0 metabolica della corteccia somatosensoriale sia durante azioni di afferramento di giocattoli",
+            "sia quando i giocattoli venivano visti afferrare da un soggetto esterno (ma solo dal vivo) rispetto agli stessi oggetti semplicemente mossi. Durante i video non c'era una differenza tra l'attivazione durante l'afferramento e quelle dove l'oggetto si muoveva da solo. Negli adulti invece non c'\u00e8 una attivazione quando si osserva un atto o un movimento alla televisione."
+        ],
+        "image": "static/uploads/mirror_nei_bambini.png"
     }
 ]
