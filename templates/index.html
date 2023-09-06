@@ -234,6 +234,7 @@
           const imagePreview = document.getElementById("imagePreview");
           imagePreview.src = e.target.result;
           imagePreview.style.display = "block";
+          imagePreview.style.width = "100%";
         };
 
         reader.readAsDataURL(file);
