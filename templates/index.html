@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
       rel="icon"
@@ -239,6 +239,36 @@
 
         reader.readAsDataURL(file);
       }
+
+      var dropZone = document.getElementById("addQuestionSection");
+
+      // Eventi per il drag and drop
+      dropZone.addEventListener("dragover", function (event) {
+        event.preventDefault();
+        this.style.backgroundColor = "rgba(0, 255, 0, 0.2)";
+      });
+
+      dropZone.addEventListener("dragleave", function (event) {
+        this.style.backgroundColor = "transparent";
+      });
+
+      dropZone.addEventListener("drop", function (event) {
+        event.preventDefault();
+        this.style.backgroundColor = "transparent";
+
+        // Accedi ai file trascinati
+        var files = event.dataTransfer.files;
+
+        // Supponiamo che ci sia solo un file
+        var file = files[0];
+
+        // Carica il file e mostra un'anteprima
+        showImagePreview({ target: { files: [file] } });
+
+        // Aggiungi il file all'input type="file"
+        var newImageInput = document.getElementById("newImage");
+        newImageInput.files = files;
+      });
 
       // Evento per l'input del file
       document
