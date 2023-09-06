@@ -5,3 +5,4 @@
 .pytest_cache
 *.pyc
 .benchmarks
+tests/__pycache__/
