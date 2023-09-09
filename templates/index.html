@@ -151,11 +151,8 @@
           method: "GET",
         });
 
-        const data = await response.json();
-        console.log(data); // Debug: stampa i dati ricevuti
-
         // Controllo se tutte le domande sono state mostrate
-        if (data.message) {
+        if (response.status === 204) {
           const restart = window.confirm(
             "Le domande sono finite! Vuoi ricominciare?"
           );
@@ -164,6 +161,9 @@
           }
           return;
         }
+
+        const data = await response.json();
+        console.log(data); // Debug: stampa i dati ricevuti
 
         document.getElementById("question").textContent = data.question;
         document.getElementById("hints").style.display = "none"; // Nasconde i suggerimenti

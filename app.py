@@ -55,7 +55,7 @@ def get_question():
     if not unused_question_ids:
         # Elimina la chiave dalla sessione
         session.pop('unused_question_ids', None)
-        return jsonify({"message": "Le domande sono finite, ricominciamo."})
+        return jsonify({"message": "Le domande sono finite, ricominciamo."}), 204
 
     random_id = random.choice(unused_question_ids)
     question = next(q for q in questions_db if q['id'] == random_id)
