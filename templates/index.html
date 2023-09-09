@@ -114,6 +114,11 @@
           document.getElementById("newQuestion").value = "";
           document.getElementById("newHints").value = "";
           document.getElementById("newImage").value = "";
+
+          // Reimposta l'anteprima dell'immagine
+          const imagePreview = document.getElementById("imagePreview");
+          imagePreview.style.display = "none";
+          imagePreview.src = "";
         } else {
           alert("Errore nell'aggiunta della domanda");
         }
