@@ -7,6 +7,9 @@ import json
 from threading import Lock
 from time import sleep
 
+# Variabili globali per tracciare la lunghezza di ciascuna coda
+progress_queue_lengths = {}
+progress_queue_data = {}
 
 # Variabile globale per tracciare il numero di thread terminati
 threads_completed = 0
@@ -82,6 +85,11 @@ def update_progress_bar():
         pbar.last_print_n = current
         pbar.update()
         total_questions_read += current
+        
+        # Aggiorna la lunghezza della coda e salva ciò che viene aggiunto
+        queue_length = progress_queue.qsize()
+        progress_queue_lengths[session_id] = queue_length
+        progress_queue_data[session_id] = session_data
 
     # Forza una nuova riga prima di stampare il totale
     print("\nTotale delle domande lette:", total_questions_read)
@@ -96,39 +104,24 @@ def simulate_user_session(total_questions):
 def fetch_all_questions(session, total_questions):
     current_question_count = 0
     session_id = id(session)
-    session_completed = False  
     
     while True:
-        sleep(0.1)
+        sleep(0.3)
         response = session.get("https://srobodao.pythonanywhere.com/get_question")
         
-        # Aggiunto qui il controllo per il codice di stato 204
-        if response.status_code == 204 and not session_completed:
-            print(f"\nSessione {session_id} completata! - ricevuto codice di stato 204, segnalo COMPLETATO")
-            # Segnala che la sessione è completa
-            progress_queue.put((session_id, "COMPLETATO"))
-            # Incrementa il conteggio dei thread completati in modo thread-safe
-            with completion_lock:
-                global threads_completed
-                threads_completed += 1
-            session_completed = True
-            break
         
         if response.status_code == 200:
-            print(f"\nSessione {session_id} - ricevuto codice di stato 200, aggiorno la barra di avanzamento")
             data = response.json()
-            
-            if "message" in data and not session_completed:
-                # Questa parte potrebbe non essere più necessaria, ma la lascio per completezza
-                progress_queue.put((session_id, "COMPLETATO"))
-                session_completed = True
-                break
-            
             question = data.get("question")
+            
             if question:
                 current_question_count += 1
                 progress_queue.put((session_id, current_question_count, total_questions))
-
+            
+        elif response.status_code == 204:
+            # Controlla se hai completato la sessione e segnala il completamento
+            progress_queue.put((session_id, "COMPLETATO"))
+            break
                 
 def check_for_repeated_questions():
     all_questions = set()  # Set per tenere traccia di tutte le domande ricevute
@@ -170,7 +163,7 @@ def check_for_repeated_questions():
 total_questions = get_total_questions()
 print("Numero totale di domande:", total_questions)
 
-numero_di_sessioni= 3
+numero_di_sessioni= 10
 
 # Usa ThreadPoolExecutor per effettuare due sessioni in parallelo
 with ThreadPoolExecutor(max_workers=numero_di_sessioni+1) as executor:  # 5 sessioni utente + 1 per la barra di avanzamento
@@ -188,3 +181,10 @@ print("\nSessioni completate:")
 for session_id in completed_sessions:
     print(f"Sessione {session_id} completata!")
 
+print("\nLunghezza delle code:")
+for session_id, length in progress_queue_lengths.items():
+    print(f"Sessione {session_id}: {length} elementi nella coda")
+
+print("\nDati nella coda:")
+for session_id, data in progress_queue_data.items():
+    print(f"Sessione {session_id}: {data}")
