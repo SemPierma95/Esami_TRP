@@ -106,7 +106,6 @@ def fetch_all_questions(session, total_questions):
     session_id = id(session)
     
     while True:
-        sleep(0.3)
         response = session.get("https://srobodao.pythonanywhere.com/get_question")
         
         
@@ -119,6 +118,7 @@ def fetch_all_questions(session, total_questions):
                 progress_queue.put((session_id, current_question_count, total_questions))
             
         elif response.status_code == 204:
+            sleep(1)
             # Controlla se hai completato la sessione e segnala il completamento
             progress_queue.put((session_id, "COMPLETATO"))
             break
@@ -163,7 +163,7 @@ def check_for_repeated_questions():
 total_questions = get_total_questions()
 print("Numero totale di domande:", total_questions)
 
-numero_di_sessioni= 10
+numero_di_sessioni= 100
 
 # Usa ThreadPoolExecutor per effettuare due sessioni in parallelo
 with ThreadPoolExecutor(max_workers=numero_di_sessioni+1) as executor:  # 5 sessioni utente + 1 per la barra di avanzamento
