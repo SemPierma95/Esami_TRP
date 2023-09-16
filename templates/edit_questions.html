@@ -64,7 +64,7 @@
         <!-- Le domande saranno popolate dinamicamente qui -->
       </div>
     </div>
-    <script src="https://cdn.ckeditor.com/4.16.0/full/ckeditor.js"></script>
+    <script src="//cdn.ckeditor.com/4.23.0-lts/full/ckeditor.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -80,26 +80,28 @@
         questionElement.contentEditable = "true";
         hintsElement.contentEditable = "true";
 
-        // Inizializza CKEditor sugli elementi
+        // Inizializza CKEditor sugli elementi 
+
         CKEDITOR.inline(`question${id}`, {
           toolbar: [
             {
               name: "basicstyles",
               items: ["Bold", "Italic", "Underline", "Strike"],
             },
-            { name: "paragraph", items: ["NumberedList", "BulletedList"] },
+            { name: "paragraph", items: ["NumberedList", "BulletedList", "JustifyLeft", "JustifyCenter", "JustifyRight", "JustifyBlock"] },
             { name: "colors", items: ["TextColor", "BGColor"] }, // Aggiunto qui
             { name: "links", items: ["Link", "Unlink"] },
           ],
         });
 
         CKEDITOR.inline(`editableHints${id}`, {
+          removePlugins: 'contextmenu,liststyle,tabletools',
           toolbar: [
             {
               name: "basicstyles",
               items: ["Bold", "Italic", "Underline", "Strike"],
             },
-            { name: "paragraph", items: ["NumberedList", "BulletedList"] },
+            { name: "paragraph", items: ["NumberedList", "BulletedList", "JustifyLeft", "JustifyCenter", "JustifyRight", "JustifyBlock"] },
             { name: "colors", items: ["TextColor", "BGColor"] }, // Aggiunto qui
             { name: "links", items: ["Link", "Unlink"] },
           ],
@@ -213,7 +215,7 @@
           .innerText.trim();
         const editedHints = document
           .getElementById(`editableHints${id}`)
-          .innerText.replace(/<br>/g, "\n");
+          .innerHTML.replace(/<br>/g, "\n");
 
         // Crea un oggetto FormData per inviare sia il testo modificato che il file immagine
         const formData = new FormData();
