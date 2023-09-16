@@ -64,6 +64,7 @@
         <!-- Le domande saranno popolate dinamicamente qui -->
       </div>
     </div>
+    <script src="https://cdn.ckeditor.com/4.16.0/full/ckeditor.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -79,6 +80,30 @@
         questionElement.contentEditable = "true";
         hintsElement.contentEditable = "true";
 
+        // Inizializza CKEditor sugli elementi
+        CKEDITOR.inline(`question${id}`, {
+          toolbar: [
+            {
+              name: "basicstyles",
+              items: ["Bold", "Italic", "Underline", "Strike"],
+            },
+            { name: "paragraph", items: ["NumberedList", "BulletedList"] },
+            { name: "colors", items: ["TextColor", "BGColor"] }, // Aggiunto qui
+            { name: "links", items: ["Link", "Unlink"] },
+          ],
+        });
+
+        CKEDITOR.inline(`editableHints${id}`, {
+          toolbar: [
+            {
+              name: "basicstyles",
+              items: ["Bold", "Italic", "Underline", "Strike"],
+            },
+            { name: "paragraph", items: ["NumberedList", "BulletedList"] },
+            { name: "colors", items: ["TextColor", "BGColor"] }, // Aggiunto qui
+            { name: "links", items: ["Link", "Unlink"] },
+          ],
+        });
         // Cambia lo sfondo per indicare che gli elementi sono ora modificabili
         questionElement.style.backgroundColor = "#f2f2f2";
         hintsElement.style.backgroundColor = "#f2f2f2";
@@ -98,6 +123,27 @@
           .addEventListener("change", function () {
             selectedFile = this.files[0];
           });
+
+        // Aggiungi l'ascoltatore di eventi per gestire il comportamento della lista
+        hintsElement.addEventListener("keydown", function (e) {
+          if (e.key === "Enter") {
+            // Controlla se l'ultimo elemento della lista è vuoto
+            const listItems = this.innerText.split("\n");
+            if (listItems[listItems.length - 1] === "") {
+              // Rimuovi l'ultimo elemento vuoto
+              this.innerText = listItems.slice(0, -1).join("\n");
+              // Fai in modo che il cursore vada alla fine del testo
+              const range = document.createRange();
+              const sel = window.getSelection();
+              range.setStart(this.childNodes[0], this.innerText.length);
+              range.collapse(true);
+              sel.removeAllRanges();
+              sel.addRange(range);
+              // Previeni l'inserimento di una nuova riga
+              e.preventDefault();
+            }
+          }
+        });
       }
 
       // Funzione per eliminare una domanda
@@ -165,9 +211,9 @@
         const editedQuestion = document
           .getElementById(`question${id}`)
           .innerText.trim();
-        const editedHints = document.getElementById(
-          `editableHints${id}`
-        ).innerText.replace(/<br>/g, '\n');
+        const editedHints = document
+          .getElementById(`editableHints${id}`)
+          .innerText.replace(/<br>/g, "\n");
 
         // Crea un oggetto FormData per inviare sia il testo modificato che il file immagine
         const formData = new FormData();
@@ -256,6 +302,17 @@
         }
       }
 
+      function convertToList(text) {
+        if (text.includes("- ")) {
+          const listItems = text.split("- ").slice(1);
+          const listHTML = listItems
+            .map((item) => `<li>${item.replace(/\\n/g, "<br>")}</li>`)
+            .join("");
+          return `<ul>${listHTML}</ul>`;
+        }
+        return text.replace(/\\n/g, "<br>");
+      }
+
       async function getQuestions() {
         const response = await fetch("/get_all_questions");
         const data = await response.json();
@@ -263,7 +320,10 @@
         questionGrid.innerHTML = ""; // Pulisci i vecchi dati se necessario
 
         data.forEach((item) => {
-          let hints = typeof item.hints === 'string' ? item.hints.replace(/\n/g, '<br>') : item.hints;
+          let hints =
+            typeof item.hints === "string"
+              ? item.hints.replace(/\n/g, "<br>")
+              : item.hints;
           let imageHTML = item.image
             ? `<img id="previewImage${item.id}" class="img-preview" src="${item.image}" alt="">`
             : "";
@@ -290,7 +350,9 @@
                                   <div id="editableHints${
                                     item.id
                                   }" contenteditable="false">
-                                  ${item.hints.replace(/\n/g, '<br>')}
+                                  ${convertToList(
+                                    item.hints.replace(/\n/g, "<br>")
+                                  )}
                                 </div>
                                   ${
                                     item.image
