@@ -64,7 +64,7 @@
         <!-- Le domande saranno popolate dinamicamente qui -->
       </div>
     </div>
-    <script src="//cdn.ckeditor.com/4.23.0-lts/full/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/4.16.2/full/ckeditor.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -80,7 +80,7 @@
         questionElement.contentEditable = "true";
         hintsElement.contentEditable = "true";
 
-        // Inizializza CKEditor sugli elementi 
+        // Inizializza CKEditor sugli elementi
 
         CKEDITOR.inline(`question${id}`, {
           toolbar: [
@@ -88,20 +88,40 @@
               name: "basicstyles",
               items: ["Bold", "Italic", "Underline", "Strike"],
             },
-            { name: "paragraph", items: ["NumberedList", "BulletedList", "JustifyLeft", "JustifyCenter", "JustifyRight", "JustifyBlock"] },
+            {
+              name: "paragraph",
+              items: [
+                "NumberedList",
+                "BulletedList",
+                "JustifyLeft",
+                "JustifyCenter",
+                "JustifyRight",
+                "JustifyBlock",
+              ],
+            },
             { name: "colors", items: ["TextColor", "BGColor"] }, // Aggiunto qui
             { name: "links", items: ["Link", "Unlink"] },
           ],
         });
 
         CKEDITOR.inline(`editableHints${id}`, {
-          removePlugins: 'contextmenu,liststyle,tabletools',
+          removePlugins: "contextmenu,liststyle,tabletools",
           toolbar: [
             {
               name: "basicstyles",
               items: ["Bold", "Italic", "Underline", "Strike"],
             },
-            { name: "paragraph", items: ["NumberedList", "BulletedList", "JustifyLeft", "JustifyCenter", "JustifyRight", "JustifyBlock"] },
+            {
+              name: "paragraph",
+              items: [
+                "NumberedList",
+                "BulletedList",
+                "JustifyLeft",
+                "JustifyCenter",
+                "JustifyRight",
+                "JustifyBlock",
+              ],
+            },
             { name: "colors", items: ["TextColor", "BGColor"] }, // Aggiunto qui
             { name: "links", items: ["Link", "Unlink"] },
           ],
@@ -129,18 +149,28 @@
         // Aggiungi l'ascoltatore di eventi per gestire il comportamento della lista
         hintsElement.addEventListener("keydown", function (e) {
           if (e.key === "Enter") {
+            const sel = window.getSelection();
+            const range = sel.getRangeAt(0);
+            const cursorPosition = range.startOffset;
+
             // Controlla se l'ultimo elemento della lista è vuoto
             const listItems = this.innerText.split("\n");
-            if (listItems[listItems.length - 1] === "") {
+
+            // Verifica la posizione del cursore
+            if (
+              listItems[listItems.length - 1] === "" &&
+              cursorPosition === this.innerText.length
+            ) {
               // Rimuovi l'ultimo elemento vuoto
               this.innerText = listItems.slice(0, -1).join("\n");
+
               // Fai in modo che il cursore vada alla fine del testo
               const range = document.createRange();
-              const sel = window.getSelection();
               range.setStart(this.childNodes[0], this.innerText.length);
               range.collapse(true);
               sel.removeAllRanges();
               sel.addRange(range);
+
               // Previeni l'inserimento di una nuova riga
               e.preventDefault();
             }

@@ -142,9 +142,10 @@
         "id": 28
     },
     {
-        "question": "Prima di studiare la capacit\u00e0 dei mirror di codificare una prospettiva, dove erano stati trovati neuroni che mostravano questa sensibilit\u00e0?",
-        "hints": "Studi precedenti studi che avevano evidenziato la presenza di neuroni che sono sensibili alla prospettiva da cui si osserva un atto motorio, o anche rispetto alle teste erano stati trovati nel solco temporale inferiore, quindi siamo ancora nel sistema visivo. Alcuni neuroni sono sensibili per la prospettiva da cui osservano un determinato atto biologico, altri invece sono invarianti e scaricano a prescindere dalla prospettiva.",
-        "id": 29
+        "question": "Come sono categorizzati i neuroni di F5?",
+        "hints": "<p>Afferramento (30, sono per la maggiore)\r\nPiazzare\r\nManipolare\r\nManipolazione con due mani\r\nTenere\r\n\r\nPoi ci sono neuroni che rispondo per due azioni:\r\n\r\nAfferramento e piazzamento (20)\r\nAfferramento e manipolazione\r\nAfferramento e interazione bimanuale\r\nAfferramento e afferramento con la bocca&nbsp;</p><p>\r\n</p><p>Inoltre ci sono neuroni che rispondono per tre diverse azioni <strong>afferramento/piazzamento/manipolazione</strong> e <strong>afferramento/piazzamento/tenere</strong></p>",
+        "id": 29,
+        "image": "static/uploads/categorizzazione-neuroni-f5.jpg"
     },
     {
         "id": 30,

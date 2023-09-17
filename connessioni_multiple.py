@@ -163,7 +163,7 @@ def check_for_repeated_questions():
 total_questions = get_total_questions()
 print("Numero totale di domande:", total_questions)
 
-numero_di_sessioni= 100
+numero_di_sessioni= 5
 
 # Usa ThreadPoolExecutor per effettuare due sessioni in parallelo
 with ThreadPoolExecutor(max_workers=numero_di_sessioni+1) as executor:  # 5 sessioni utente + 1 per la barra di avanzamento
