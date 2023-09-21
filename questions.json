@@ -1025,42 +1025,55 @@
     },
     {
         "id": 181,
-        "question": "",
-        "hints": ""
+        "question": "Teoria polivagale",
+        "hints": "<p>Secondo la teoria polivagale il sistema che regola le risposte autonomiche sono tre:</p><ul><li>il complesso dorsale del vago non mielinizzato</li><li>il sistema simpatico</li><li>il complesso ventrale del vago mielinizzato (nel nucleo ambiguo)\r\n\r\nNormalmente \u00e8 attivo il sistema del vago mielinizzato che connette gli organi periferici ma anche i nervi cranici e quindi favorisce aspetti di prosocialit\u00e0. Quando una situazione mette in pericolo l'individuo si attiva il sistema simpatico sia attraverso i gangli simpatici che anche liberando adrenalina e noradrenalina dalla midollare del surrene. Questa risposta consente una risposta di attacco o fuga.\r\n\r\nSe anche la risposta simpatica non funziona, allora entra in gioco il vago non mielinizzato che determina bradicardia (intervenendo sul nodo seno atriale) e rallentando il cuore, favorendo la defecazione e portando ad uno stato di immobilismo (il freezing).\r\n\r\nIl fatto che una risposta emotiva possa essere controllata o meno dipende dalla finestra di tolleranza, se una stimolazione rimane all'interno della finestra di tolleranza allora abbiamo una risposta emotiva modulata e congruente. Se invece abbiamo una risposta che non \u00e8 modulata possiamo avere una iperattivazione o una ipoattivazione con sensazioni di ottundimento e piattezza emotiva, immobilismo o comportamenti di sottomissione.\r\n\r\nLa finestra di tolleranza dipende sia da fattori genetici ma anche epigenetici legati alle particolari esperienze positive o negative dei soggetti che possono ampliare o ridurre questa finestra di tolleranza.\r\n</li></ul>",
+        "image": "static/uploads/teoria-polivagale.jpg"
     },
     {
         "id": 182,
-        "question": "",
-        "hints": ""
+        "question": "Che cos'\u00e8 l'HRV e l'aritmia sinusoidale respiratoria?",
+        "hints": "<p>Sono due modalit\u00e0 che possono essere utilizzate per valutare quanto \u00e8 funzionante il freno vagale.\r\n\r\nL'HRV misura la variabilit\u00e0 della frequenza cardiaca, tale variabilit\u00e0 \u00e8 legata all'attivazione del nervo vago che agisce sul nodo seno atriale rallentando i battiti del cuore (che altrimenti sarebbero normalemente a 100-120 battiti al minuto). Maggiore \u00e8 la variabilit\u00e0 maggiore \u00e8 la capacit\u00e0 che il nervo vado ha di bilanciare eventuali situazioni complesse e stressanti.\r\n\r\nL'aritmia sinusoidale respiratoria risponde allo stesso processo. Se abbiamo una importante risposta vagale a riposo l'arirmia \u00e8 alta, con frequenze maggiori quanto inspiriamo e pi\u00f9 lente quando espiriamo. Questo processo ottimizza gli scambi di Ossigeno e anidride carbonica durante la respirazione. Maggiore \u00e8 l'aritmia e migliore \u00e8 l'attivit\u00e0 del vago e quindi possiamo avere una maggiore flessibilit\u00e0 di risposta, minore \u00e8 l'aritmia e minore \u00e8 la capacit\u00e0 del vago di intervenire per ridurre lo stress.\r\n</p>",
+        "image": "static/uploads/aritmia-sinusoidale-respiratoria.jpg"
     },
     {
         "id": 183,
-        "question": "",
-        "hints": ""
+        "question": "Cos'\u00e8 il PTSD?",
+        "hints": "<p>Il disturbo post-traumatico da stress (PTSD, dall'inglese Post-Traumatic Stress Disorder) \u00e8 generalmente caratterizzato da una triade sintomatologica:</p><ol><li><p><strong>Fenomeni intrusivi</strong>: Questo include flashback, incubi e pensieri invasivi riguardanti l'evento traumatico. Le persone possono rivivere l'evento in modo cos\u00ec intenso da avere reazioni fisiche come sudorazione o battito cardiaco accelerato.</p></li><li><p><strong>Evitamento e Intorpidimento</strong>: Le persone affette da PTSD tendono ad evitare luoghi, persone e attivit\u00e0 che potrebbero farle ricordare il trauma. L'intorpidimento emotivo, come l'incapacit\u00e0 di provare gioia o interesse per cose che prima erano piacevoli, \u00e8 anche comune.</p></li><li><p><strong>Iperarousal o Iperattivazione</strong>: Questo si riferisce a sintomi come l'essere facilmente spaventati, irritabili, agitati, o in uno stato di allerta costante. Pu\u00f2 anche includere problemi di sonno e di concentrazione.</p></li></ol><p>La presenza di questa triade sintomatologica \u00e8 un criterio chiave per la diagnosi di PTSD secondo i manuali diagnostici come il DSM-5 (Manuale Diagnostico e Statistico dei Disturbi Mentali, Quinta Edizione) e l'ICD-10 (Classificazione Internazionale delle Malattie, Decima Revisione).\r\n\r\nA livello di alterazioni neurofisiologiche quello che si osserva con un PTSD sono:\r\n</p><ul><li>Ipofunzionamento della PFC che determina</li><li>Iperattivazione dell'amigdala che non \u00e8 pi\u00f9 inibita dalla PFC\r\n</li><li>Apoptosi a livello dell'ippocampo\r\n</li><li>Deficit di modulazione del talamo</li></ul>",
+        "image": "static/uploads/ptsd.jpg"
     },
     {
         "id": 184,
-        "question": "",
-        "hints": ""
+        "question": "Studio in Sierra Leone",
+        "hints": "<p>E' stato fatto uno studio in Sierra Leone dal prof. Gallese e dai suoi collaboratori.\r\nLo scopo dello studio era studiare gli effetti del PTSD complesso in bambini e adolescenti di strada della Sierra Leone paragonati ad un campione di bambini di controllo che vivevano in famiglia.\r\n\r\nSono stati presentati delle immagini che ritraevano volti espressivi che mostravano paura, rabbia, tristezza e felicit\u00e0.\r\nPer quel che riguarda il riconoscimento sia i bambini che i ragazzini mostravano un deficit nel riconoscimento delle emozioni e vedevano rabbia in tutte le emozioni negative.\r\n\r\nPer quel che riguarda le attivazioni dello zogomatico e del corrugatore nei bambini di strada c'era una normale attivazione dello zigomatico ma nessuna attivazione del corrugatore. Nel ragazzini l'attivazione del corrugatore era piatta e l'attivazione dello zigomatico era significativamente bassa.\r\n\r\nAndando poi a vedere l'aritmia sinusoidale a riposo, nei bambini quello che si osserva \u00e8 una precocissima attivazione della risposta vagale, ad una et\u00e0 in cui nei soggetti di controllo non \u00e8 necessaria e ancora non \u00e8 attiva. Questa attivazione precoce del freno vagale per\u00f2 ha un limite, intorno agli unidici anni si osserva un graduale decremento che porta i ragazzini a non avere pi\u00f9 una risposta vagale sufficiente.\r\n\r\nQuesto determina in questi ragazzini risposte anomale a eventi di natura sociale determinando cos\u00ec importanti deficit non solo nella regolazione emotiva, ma anche nelle risposte comportamentali ad essa associate. Quindi il trauma ha un effetto che si manifesta come una alterazione della socialit\u00e0 e quindi anche della costruzione di un s\u00e8 sano, che come \u00e8 risaputo, dipende significativamente dalla relazione con l'altro.\r\n\r\n<strong>Importante: Il facial mimicry si riduce nel tempo. Mentre l'anomalo riconoscimento della rabbia \u00e8 presente fin da subito e non \u00e8 modificato dal tempo.</strong>\r\n</p>",
+        "image": "static/uploads/sierra-leone.jpg"
     },
     {
         "id": 185,
-        "question": "",
-        "hints": ""
+        "question": "Autismo in generale",
+        "hints": "<p>Oggi si parla di spettro autistico e non pi\u00f9 di autismo. In generale ci\u00f2 che si conosce sulla patologia autistica almeno per quel che riguarda gli studi di laboratorio lo si sa su pazienti ad alto funzionamento.\r\n\r\nUno degli autori ritenuto pi\u00f9 influente sull'autismo e <strong>Simon Baron-Cohen</strong> che inizialmente aveva ipotizzato che il nucleo psicopatologico dell'autismo fosse un deficit a carico della <strong>Teoria della Mente</strong>. Ma visto che circa il 25% dei bambini con ASD risolvono problemi di falsa credenza ha poi ipotizzato un problema <strong>all'amigdala</strong>, per poi arrivare all'ipotesi <strong>dell'ipermaschio</strong>, cio\u00e8 una estrema sensibilit\u00e0 dei cervelli dei soggetti autistici al testosterone e un conseguente deficit di empatia.\r\n\r\nI deficit che si osservano nell'autismo sono:</p><ul><li>difficolt\u00e0 nell'imitazione, anche se non sempre, c'\u00e8 un ipofunzionamento delle abilit\u00e0 imitative\r\n</li><li>nell'espressione facciale delle emozioni e nel riconoscimento delle emozioni facciali</li><li>nella comprensione delle intenzioni altrui e nei loro stati d'animo</li><li>deficit motori (stereotipie) o deficit linguistici (disartrie)\r\n</li><li>disprassie (ad esempio quando la madre si allunga per abbracciarli loro non allungano le braccia)\r\n</li><li>deficit nel mimare l'uso di uno strumento\r\n\r\nSecondo Gallese il deficit nell'autismo si colloca in un pi\u00f9 generale deficit di diversi meccanismi simulativi. Nei soggetti autistici quindi sarebbe necessaria una teorizzazione esplicita per sopperire al deficit di simulazione incarnata\r\n</li></ul>"
     },
     {
         "id": 186,
-        "question": "",
-        "hints": ""
+        "question": "Come \u00e8 lo sviluppo del cervello di un autistico?",
+        "hints": "<p>Da uno studio di risonanza morfologica si \u00e8 potuto osservare che soggetti con un disturbo dello spettro autistico mostrano in una primissima fase una ipertrofia corticale, che poi diventa pi\u00f9 sottile rispetto al cervello di bambini normotipici.</p>",
+        "image": "static/uploads/cervello-autismo.jpg"
     },
     {
         "id": 187,
-        "question": "",
-        "hints": ""
+        "question": "Come guarda un viso un autistico?",
+        "hints": "<p>Quando si chiede ad un soggetto autistico di guardare un volto non guarda triangolando la regione degli occhi e della bocca, ma spostano il loro sguardo da un'altra parte. Le aree visive non sono deficitarie, nonostante ci siano degli assottigliamenti a livello occipitale, se al bambino viene detto di guardare in un determinato punto c'\u00e8 una attivazione delle aree specifiche per i volti che \u00e8 simile, ma non uguale, a quella di soggetti sani.\r\n\r\nQuesto deficit nell'osservazione potrebbe essere dovuto a<strong> deficit connessionali nell'amigdala e nell'insula.</strong>\r\n\r\nIn soggetti normotipici ci sono infatti <u>numerose connessioni tra l'insula posteriore e le aree somatosensoriali</u>, nei soggetti autistici <strong>queste connessioni sono significativamente ridotte</strong>. Inoltre anche la connettivit\u00e0 tra l'insula anteriore e l'amigdala risulta deficitaria. Una delle ipotesi quindi \u00e8 che la ridotta connettivit\u00e0 tra l'insula anteriore e l'amigdala e l'insula posteriore e le regioni tattili determini un evitamento delle informazioni emotive che sono contenute nei visi espressivi.\r\n</p>",
+        "image": "static/uploads/dove-guardano-gli-autistici.jpg"
     },
     {
         "id": 188,
-        "question": "",
-        "hints": ""
+        "question": "Altri deficit focali trovati negli autistici",
+        "hints": "<p>Altri deficit focali trovati negli autistici:\r\n</p><ul><li>c'\u00e8 una ridotta connettivit\u00e0 tra le aree visive e il giro frontale inferiore nei soggetti con autismo\r\n</li><li>deficit di imitazione, imitano tutto anche i gesti involontari</li><li>hanno deficit nel riconoscimento dei point-light-display</li><li>mostrano difficolt\u00e0 nel ruotare mentalmente posture (assottigliamento premotoria ventrale)</li><li>sono meno soggetti allo sbadiglio contagioso</li><li>la desincronizzazione del mu c'\u00e8 solo quando si vede il movimento di estraneo</li><li>durante la processazione semantica hanno una ipoattivazione dell'area di broca\r\n</li><li>durante la visione di azioni con vitality forms riescono a capire cosa succede, ma non riescono a comprendere la vitality form (il come)</li></ul>",
+        "image": "static/uploads/autismo-ritmo-mu.jpg"
+    },
+    {
+        "id": 189,
+        "question": "Studio di Dapretto su autistici",
+        "hints": "<p>In uno studio molto importante di Dapretto, moglie di Iacoboni, hanno mostrato a dei soggetti a sviluppo normale e a soggetti autistici dei volti. In una condizione dovevano semplicemente osservare, mentre nell'altra dovevano anche imitare.\r\n\r\nNella condizione di imitazione c'\u00e8 una ipoattivazione del sistema mirror, con una ridotta attivazione a livello frontale, parietale e premotoria.&nbsp;\r\n\r\nSe andiamo a osservare nel compito di sola osservazione delle emozioni e andiamo a fare una differenza tra le attivazioni dei soggetti sani e le attivazioni dei soggetti con autismo notiamo che resta attiva un'area che si trova a livello della corteccia ventrale al confine con il giro temporale inferiore (area 44).\r\n</p>",
+        "image": "static/uploads/dapretto.jpg"
     }
 ]
