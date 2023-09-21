@@ -72,6 +72,12 @@
       let selectedFile = null; // Variabile per memorizzare il file dell'immagine selezionato
 
       function editQuestion(id) {
+        // Se non esiste un'immagine per questa domanda, resetta selectedFile
+        let existingImageElement = document.getElementById(`previewImage${id}`);
+        if (!existingImageElement) {
+          selectedFile = null;
+        }
+
         // Trova gli elementi HTML relativi alla domanda e ai suggerimenti
         const questionElement = document.getElementById(`question${id}`);
         const hintsElement = document.getElementById(`editableHints${id}`);
@@ -317,6 +323,9 @@
           // Nascondi il campo di input per il caricamento dell'immagine e il bottone "Salva"
           document.getElementById(`imageInput${id}`).style.display = "none";
           document.getElementById(`saveButton${id}`).style.display = "none";
+
+          // Resetta selectedFile a null
+          selectedFile = null;
         } else {
           alert(
             "Si è verificato un errore durante l'aggiornamento della domanda."
