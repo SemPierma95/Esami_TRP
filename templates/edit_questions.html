@@ -342,15 +342,7 @@
           alert("Errore nel reset della sessione.");
         }
       }
-
       function convertToList(text) {
-        if (text.includes("- ")) {
-          const listItems = text.split("- ").slice(1);
-          const listHTML = listItems
-            .map((item) => `<li>${item.replace(/\\n/g, "<br>")}</li>`)
-            .join("");
-          return `<ul>${listHTML}</ul>`;
-        }
         return text.replace(/\\n/g, "<br>");
       }
 
