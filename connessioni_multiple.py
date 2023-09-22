@@ -106,22 +106,32 @@ def fetch_all_questions(session, total_questions):
     session_id = id(session)
     
     while True:
-        response = session.get("https://srobodao.pythonanywhere.com/get_question")
+        # Inizializza una variabile per tracciare lo stato della richiesta
+        request_successful = False
         
+        # Loop per attendere uno status code 200
+        while not request_successful:
+            response = session.get("https://srobodao.pythonanywhere.com/get_question")
+            if response.status_code == 200:
+                request_successful = True  # Imposta la variabile a True per uscire dal loop
+            elif response.status_code == 204:
+            # Gestisci il caso in cui non ci sono più domande
+                progress_queue.put((session_id, "COMPLETATO"))
+                return  # Uscire dalla funzione
+    
+        data = response.json()
+        question = data.get("question")
         
-        if response.status_code == 200:
-            data = response.json()
-            question = data.get("question")
-            
-            if question:
-                current_question_count += 1
-                progress_queue.put((session_id, current_question_count, total_questions))
-            
+        if question:
+            current_question_count += 1
+            progress_queue.put((session_id, current_question_count, total_questions))
+        
         elif response.status_code == 204:
             sleep(1)
             # Controlla se hai completato la sessione e segnala il completamento
             progress_queue.put((session_id, "COMPLETATO"))
             break
+
                 
 def check_for_repeated_questions():
     all_questions = set()  # Set per tenere traccia di tutte le domande ricevute
@@ -163,7 +173,7 @@ def check_for_repeated_questions():
 total_questions = get_total_questions()
 print("Numero totale di domande:", total_questions)
 
-numero_di_sessioni= 5
+numero_di_sessioni= 10
 
 # Usa ThreadPoolExecutor per effettuare due sessioni in parallelo
 with ThreadPoolExecutor(max_workers=numero_di_sessioni+1) as executor:  # 5 sessioni utente + 1 per la barra di avanzamento
@@ -173,8 +183,9 @@ with ThreadPoolExecutor(max_workers=numero_di_sessioni+1) as executor:  # 5 sess
 
 # Questa parte assicura che done.set() venga chiamato solo quando tutti i thread sono completati
 executor.shutdown()
+sleep(5)
 done.set()
-sleep(2)
+sleep(1)
 
 # Stampa i messaggi delle sessioni completate
 print("\nSessioni completate:")
