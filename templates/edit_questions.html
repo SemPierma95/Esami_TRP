@@ -246,30 +246,26 @@
 
       async function saveQuestion(id) {
         // Ottieni il testo modificato della domanda e dei suggerimenti
-        const editedQuestion = document
-          .getElementById(`question${id}`)
-          .innerText.trim();
-        const editedHints = document
-          .getElementById(`editableHints${id}`)
-          .innerHTML.replace(/<br>/g, "\n");
-
+        const editedQuestion = document.getElementById(`question${id}`).innerText.trim();
+        const editedHints = document.getElementById(`editableHints${id}`).innerHTML.replace(/<br>/g, "\\n");
+      
         // Crea un oggetto FormData per inviare sia il testo modificato che il file immagine
         const formData = new FormData();
         formData.append("question", editedQuestion);
         formData.append("hints", editedHints);
-
+      
         if (selectedFile) {
           formData.append("newImage", selectedFile);
         }
-
+      
         // Invia i dati al backend per l'aggiornamento
         const response = await fetch(`/update_question/${id}`, {
           method: "POST",
           body: formData,
         });
-
+      
         const data = await response.json();
-
+      
         // Se un file è stato selezionato
         if (selectedFile) {
           const reader = new FileReader();
@@ -282,7 +278,7 @@
               document.getElementById(`hints${id}`).appendChild(imgElement);
             }
             imgElement.src = e.target.result;
-
+      
             // Aggiorna l'immagine di anteprima
             let previewElement = document.getElementById(`previewImage${id}`);
             if (!previewElement) {
@@ -293,45 +289,32 @@
             }
             previewElement.src = e.target.result;
           };
-
+      
           // Leggi il file immagine
           reader.readAsDataURL(selectedFile);
-        } else {
-          // Rimuovi l'elemento <img> se esiste
-          let imgElement = document.getElementById(`image${id}`);
-          if (imgElement) {
-            imgElement.remove();
-          }
-          let previewElement = document.getElementById(`previewImage${id}`);
-          if (previewElement) {
-            previewElement.remove();
-          }
-        }
-
+        } // Ometto il blocco "else" che rimuove l'immagine se selectedFile è null
+      
         // Se tutto va bene, ritorna alla modalità non modificabile
         if (response.status === 200) {
           alert(data.message);
-
+      
           // Reimposta gli attributi e gli stili originali
           document.getElementById(`question${id}`).contentEditable = "false";
-          document.getElementById(`editableHints${id}`).contentEditable =
-            "false";
+          document.getElementById(`editableHints${id}`).contentEditable = "false";
           document.getElementById(`question${id}`).style.backgroundColor = "";
-          document.getElementById(`editableHints${id}`).style.backgroundColor =
-            "";
-
+          document.getElementById(`editableHints${id}`).style.backgroundColor = "";
+      
           // Nascondi il campo di input per il caricamento dell'immagine e il bottone "Salva"
           document.getElementById(`imageInput${id}`).style.display = "none";
           document.getElementById(`saveButton${id}`).style.display = "none";
-
+      
           // Resetta selectedFile a null
           selectedFile = null;
         } else {
-          alert(
-            "Si è verificato un errore durante l'aggiornamento della domanda."
-          );
+          alert("Si è verificato un errore durante l'aggiornamento della domanda.");
         }
       }
+      
 
       async function resetSession() {
         const response = await fetch("/reset_session");
