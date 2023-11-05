@@ -18,6 +18,8 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='style.css') }}"
     />
+    <script src="https://cdn.ckeditor.com/4.16.2/full/ckeditor.js"></script>
+    <!-- Aggiunto CKEditor -->
     <style></style>
   </head>
 
@@ -126,16 +128,10 @@
 
       // Funzione per convertire il testo in una lista HTML se contiene marcatori di lista
       function convertToList(text) {
-        // Se il testo contiene "- ", allora crea una lista
-        if (text.includes("- ")) {
-          const listItems = text.split("- ").slice(1); // Rimuove il primo elemento vuoto
-          const listHTML = listItems
-            .map((item) => `<li>${item.replace(/\n/g, "<br>")}</li>`)
-            .join("");
-          return `<ul>${listHTML}</ul>`;
-        }
-        // Altrimenti, sostituisci solo i caratteri di "a capo" con <br>
-        return text.replace(/\n/g, "<br>");
+        // Sostituisci le sequenze \\n con <br> solo se non siamo all'interno di un tag HTML
+        text = text.replace(/\\n(?!([^<]+)?>)/g, "<br>");
+        // Restituisci il testo così com'è
+        return text;
       }
 
       // Funzione per ottenere una domanda casuale

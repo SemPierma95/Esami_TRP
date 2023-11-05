@@ -74,7 +74,7 @@ def add_question():
     if new_hints is None:
         new_hints = ""
     # Salva l'intera stringa come un unico elemento di array
-        
+
     image_file = request.files.get('newImage')
 
     # Trova l'ID massimo tra le domande esistenti
@@ -102,6 +102,29 @@ def add_question():
         json.dump(questions_db, f, indent=4)
 
     return jsonify(new_entry), 201
+
+
+@app.route('/add_empty_question', methods=['POST'])
+def add_empty_question():
+    # Trova l'ID massimo tra le domande esistenti
+    max_id = max([q.get('id', 0) for q in questions_db])
+
+    # Crea una nuova domanda vuota con solo un ID
+    new_entry = {
+        'id': max_id + 1,  # Assegna l'ID successivo
+        'question': '',
+        'hints': ''
+    }
+
+    # Aggiungi la domanda vuota al database
+    questions_db.append(new_entry)
+
+    # Salva il database aggiornato
+    with open('questions.json', 'w', encoding='utf-8') as f:
+        json.dump(questions_db, f, indent=4)
+
+    return jsonify(new_entry), 201
+
 
 # funzione per mostrare tutte le domande
 

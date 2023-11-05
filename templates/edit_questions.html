@@ -40,6 +40,11 @@
         object-fit: cover;
         margin-left: 10px;
       }
+      .btn-green {
+        background-color: #28a745; 
+        color: white;  
+      }
+
       .reset-button {
         position: absolute;
         top: 10px;
@@ -55,11 +60,18 @@
         Reset Sessione
       </button>
       <h1>Gestione delle Domande</h1>
-      <div class="col-md-12">
-        <a href="/" class="btn btn-warning"
-          >Torna alla sezione delle risposte</a
-        >
+      <div class="row">  <!-- Aggiunta la riga per allineare i pulsanti -->
+        <div class="col-md-12 d-flex justify-content-between"> <!-- Modificato in col-md-12 e aggiunto d-flex justify-content-between -->
+          <a href="/" class="btn btn-warning">
+            Torna alla sezione delle risposte
+          </a>
+          <a href="/" class="btn btn-green" id="addEmptyQuestionBtn">  <!-- Modificato in btn-success per il colore verde -->
+            Aggiungi domanda vuota
+          </a>
+        </div>
       </div>
+    </div>
+    
       <div id="questionGrid">
         <!-- Le domande saranno popolate dinamicamente qui -->
       </div>
@@ -242,78 +254,81 @@
           });
       }
 
-      // Funzione per salvare la domanda modificata
-
-      async function saveQuestion(id) {
-        // Ottieni il testo modificato della domanda e dei suggerimenti
-        const editedQuestion = document.getElementById(`question${id}`).innerText.trim();
-        const editedHints = document.getElementById(`editableHints${id}`).innerHTML.replace(/<br>/g, "\\n");
-      
-        // Crea un oggetto FormData per inviare sia il testo modificato che il file immagine
-        const formData = new FormData();
-        formData.append("question", editedQuestion);
-        formData.append("hints", editedHints);
-      
-        if (selectedFile) {
-          formData.append("newImage", selectedFile);
-        }
-      
-        // Invia i dati al backend per l'aggiornamento
-        const response = await fetch(`/update_question/${id}`, {
-          method: "POST",
-          body: formData,
-        });
-      
-        const data = await response.json();
-      
-        // Se un file è stato selezionato
-        if (selectedFile) {
-          const reader = new FileReader();
-          reader.onload = function (e) {
-            // Aggiorna l'immagine principale
-            let imgElement = document.getElementById(`image${id}`);
-            if (!imgElement) {
-              imgElement = document.createElement("img");
-              imgElement.id = `image${id}`;
-              document.getElementById(`hints${id}`).appendChild(imgElement);
-            }
-            imgElement.src = e.target.result;
-      
-            // Aggiorna l'immagine di anteprima
-            let previewElement = document.getElementById(`previewImage${id}`);
-            if (!previewElement) {
-              previewElement = document.createElement("img");
-              previewElement.id = `previewImage${id}`;
-              previewElement.className = "img-preview";
-              document.querySelector(`.card-id`).after(previewElement);
-            }
-            previewElement.src = e.target.result;
-          };
-      
-          // Leggi il file immagine
-          reader.readAsDataURL(selectedFile);
-        } // Ometto il blocco "else" che rimuove l'immagine se selectedFile è null
-      
-        // Se tutto va bene, ritorna alla modalità non modificabile
-        if (response.status === 200) {
-          alert(data.message);
-      
-          // Reimposta gli attributi e gli stili originali
-          document.getElementById(`question${id}`).contentEditable = "false";
-          document.getElementById(`editableHints${id}`).contentEditable = "false";
-          document.getElementById(`question${id}`).style.backgroundColor = "";
-          document.getElementById(`editableHints${id}`).style.backgroundColor = "";
-      
-          // Nascondi il campo di input per il caricamento dell'immagine e il bottone "Salva"
-          document.getElementById(`imageInput${id}`).style.display = "none";
-          document.getElementById(`saveButton${id}`).style.display = "none";
-      
-          // Resetta selectedFile a null
-          selectedFile = null;
-        } else {
-          alert("Si è verificato un errore durante l'aggiornamento della domanda.");
-        }
+ // Funzione per salvare la domanda modificata
+async function saveQuestion(id) {
+  // Ottieni il testo modificato della domanda e dei suggerimenti
+  const editedQuestion = document.getElementById(`question${id}`).innerText.trim();
+  const editedHints = document.getElementById(`editableHints${id}`).innerHTML.replace(/<br>/g, "\\n");
+  
+  // Crea un oggetto FormData per inviare sia il testo modificato che il file immagine
+  const formData = new FormData();
+  formData.append("question", editedQuestion);
+  formData.append("hints", editedHints);
+  
+  if (selectedFile) {
+    formData.append("newImage", selectedFile);
+  }
+  
+  // Invia i dati al backend per l'aggiornamento
+  const response = await fetch(`/update_question/${id}`, {
+    method: "POST",
+    body: formData,
+  });
+  
+  const data = await response.json();
+  
+  // Se un file è stato selezionato
+  if (selectedFile) {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      // Aggiorna l'immagine principale
+      let imgElement = document.getElementById(`image${id}`);
+      if (!imgElement) {
+        imgElement = document.createElement("img");
+        imgElement.id = `image${id}`;
+        document.getElementById(`hints${id}`).appendChild(imgElement);
       }
+      imgElement.src = e.target.result;
+  
+      // Aggiorna l'immagine di anteprima
+      let previewElement = document.getElementById(`previewImage${id}`);
+      if (!previewElement) {
+        previewElement = document.createElement("img");
+        previewElement.id = `previewImage${id}`;
+        previewElement.className = "img-preview";
+        document.querySelector(`.card-id`).after(previewElement);
+      }
+      previewElement.src = e.target.result;
+    };
+  
+    // Leggi il file immagine
+    reader.readAsDataURL(selectedFile);
+  }
+  
+  // Se tutto va bene, ritorna alla modalità non modificabile
+  if (response.status === 200) {
+    alert(data.message);
+  
+    // Reimposta gli attributi e gli stili originali
+    document.getElementById(`question${id}`).contentEditable = "false";
+    document.getElementById(`editableHints${id}`).contentEditable = "false";
+    document.getElementById(`question${id}`).style.backgroundColor = "";
+    document.getElementById(`editableHints${id}`).style.backgroundColor = "";
+  
+    // Nascondi il campo di input per il caricamento dell'immagine e il bottone "Salva"
+    document.getElementById(`imageInput${id}`).style.display = "none";
+    document.getElementById(`saveButton${id}`).style.display = "none";
+  
+    // Resetta selectedFile a null
+    selectedFile = null;
+
+    // Aggiorna la lista delle domande
+    getQuestions();
+  } else {
+    alert("Si è verificato un errore durante l'aggiornamento della domanda.");
+  }
+}
+
       
 
       async function resetSession() {
@@ -463,12 +478,30 @@
         }
       }
 
-      // Quando il documento è completamente caricato
-      document.addEventListener("DOMContentLoaded", function () {
-        getQuestions(); // Carica tutte le domande
-        const resetButton = document.getElementById("resetSessionButton");
-        resetButton.addEventListener("click", resetSession);
+  // Quando il documento è completamente caricato
+  document.addEventListener("DOMContentLoaded", function () {
+    getQuestions(); // Carica tutte le domande
+    
+    // Aggiungi un listener al pulsante per aggiungere una domanda vuota
+    document.getElementById("addEmptyQuestionBtn").addEventListener("click", async function(event) {
+      event.preventDefault();  // Previeni il comportamento di default del link
+      const response = await fetch("/add_empty_question", {
+        method: "POST",
       });
+
+      const data = await response.json();  // Aggiunto: leggi la risposta del server
+
+      if (response.status === 201) {
+        alert("Domanda vuota aggiunta con successo");
+        getQuestions();  // Ricarica le domande
+      } else {
+        alert("Si è verificato un errore nell'aggiunta della domanda vuota: " + data.message);  // Modificato: mostra il messaggio di errore dal server
+      }
+    });
+
+    const resetButton = document.getElementById("resetSessionButton");
+    resetButton.addEventListener("click", resetSession);
+  });
     </script>
   </body>
 </html>
