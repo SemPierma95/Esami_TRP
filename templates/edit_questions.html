@@ -56,26 +56,32 @@
   </head>
   <body>
     <div class="container mt-5">
-      <button id="resetSessionButton" class="btn reset-button">
+      <button id="resetSessionButton" class="btn reset-button" onclick="resetSession()">
         Reset Sessione
       </button>
       <h1>Gestione delle Domande</h1>
-      <div class="row">  <!-- Aggiunta la riga per allineare i pulsanti -->
-        <div class="col-md-12 d-flex justify-content-between"> <!-- Modificato in col-md-12 e aggiunto d-flex justify-content-between -->
-          <a href="/" class="btn btn-warning">
-            Torna alla sezione delle risposte
-          </a>
-          <a href="/" class="btn btn-green" id="addEmptyQuestionBtn">  <!-- Modificato in btn-success per il colore verde -->
-            Aggiungi domanda vuota
-          </a>
-        </div>
+      <div class="mb-3 d-flex justify-content-between"> <!-- Div per allineare i pulsanti orizzontalmente -->
+        <button onclick="returnToResponses()" class="btn btn-warning">
+          Torna alla sezione delle risposte
+        </button>
+        <button onclick="addEmptyQuestion()" class="btn btn-green" id="addEmptyQuestionBtn">
+          Aggiungi domanda vuota
+        </button>
       </div>
     </div>
     
-      <div id="questionGrid">
-        <!-- Le domande saranno popolate dinamicamente qui -->
-      </div>
+    
+    
+    <div id="questionGrid">
+      <!-- Le domande saranno popolate dinamicamente qui -->
     </div>
+  
+    <div class="container">
+      <button onclick="addEmptyQuestion()" class="btn btn-green" id="addEmptyQuestionBtn">
+        Aggiungi domanda vuota
+      </button>
+    </div>
+    <div style="height: 100px;"></div>
     <script src="https://cdn.ckeditor.com/4.16.2/full/ckeditor.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
@@ -328,8 +334,7 @@ async function saveQuestion(id) {
     alert("Si è verificato un errore durante l'aggiornamento della domanda.");
   }
 }
-
-      
+     
 
       async function resetSession() {
         const response = await fetch("/reset_session");
