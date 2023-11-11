@@ -41,8 +41,8 @@
         margin-left: 10px;
       }
       .btn-green {
-        background-color: #28a745; 
-        color: white;  
+        background-color: #28a745;
+        color: white;
       }
 
       .reset-button {
@@ -56,32 +56,36 @@
   </head>
   <body>
     <div class="container mt-5">
-      <button id="resetSessionButton" class="btn reset-button" onclick="resetSession()">
+      <button
+        id="resetSessionButton"
+        class="btn reset-button"
+        onclick="resetSession()"
+      >
         Reset Sessione
       </button>
       <h1>Gestione delle Domande</h1>
-      <div class="mb-3 d-flex justify-content-between"> <!-- Div per allineare i pulsanti orizzontalmente -->
-        <button onclick="returnToResponses()" class="btn btn-warning">
+      <div class="mb-3 d-flex justify-content-between">
+        <!-- Div per allineare i pulsanti orizzontalmente -->
+        <a href="/">
+        <button class="btn btn-warning">
           Torna alla sezione delle risposte
-        </button>
-        <button onclick="addEmptyQuestion()" class="btn btn-green" id="addEmptyQuestionBtn">
+        </button></a>
+        <button onclick="addEmptyQuestion()" class="btn btn-green addEmptyQuestionBtn">
           Aggiungi domanda vuota
         </button>
       </div>
     </div>
-    
-    
-    
+
     <div id="questionGrid">
       <!-- Le domande saranno popolate dinamicamente qui -->
     </div>
-  
+
     <div class="container">
-      <button onclick="addEmptyQuestion()" class="btn btn-green" id="addEmptyQuestionBtn">
+      <button onclick="addEmptyQuestion()" class="btn btn-green addEmptyQuestionBtn">
         Aggiungi domanda vuota
       </button>
     </div>
-    <div style="height: 100px;"></div>
+    <div style="height: 100px"></div>
     <script src="https://cdn.ckeditor.com/4.16.2/full/ckeditor.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
@@ -260,81 +264,88 @@
           });
       }
 
- // Funzione per salvare la domanda modificata
-async function saveQuestion(id) {
-  // Ottieni il testo modificato della domanda e dei suggerimenti
-  const editedQuestion = document.getElementById(`question${id}`).innerText.trim();
-  const editedHints = document.getElementById(`editableHints${id}`).innerHTML.replace(/<br>/g, "\\n");
-  
-  // Crea un oggetto FormData per inviare sia il testo modificato che il file immagine
-  const formData = new FormData();
-  formData.append("question", editedQuestion);
-  formData.append("hints", editedHints);
-  
-  if (selectedFile) {
-    formData.append("newImage", selectedFile);
-  }
-  
-  // Invia i dati al backend per l'aggiornamento
-  const response = await fetch(`/update_question/${id}`, {
-    method: "POST",
-    body: formData,
-  });
-  
-  const data = await response.json();
-  
-  // Se un file è stato selezionato
-  if (selectedFile) {
-    const reader = new FileReader();
-    reader.onload = function (e) {
-      // Aggiorna l'immagine principale
-      let imgElement = document.getElementById(`image${id}`);
-      if (!imgElement) {
-        imgElement = document.createElement("img");
-        imgElement.id = `image${id}`;
-        document.getElementById(`hints${id}`).appendChild(imgElement);
-      }
-      imgElement.src = e.target.result;
-  
-      // Aggiorna l'immagine di anteprima
-      let previewElement = document.getElementById(`previewImage${id}`);
-      if (!previewElement) {
-        previewElement = document.createElement("img");
-        previewElement.id = `previewImage${id}`;
-        previewElement.className = "img-preview";
-        document.querySelector(`.card-id`).after(previewElement);
-      }
-      previewElement.src = e.target.result;
-    };
-  
-    // Leggi il file immagine
-    reader.readAsDataURL(selectedFile);
-  }
-  
-  // Se tutto va bene, ritorna alla modalità non modificabile
-  if (response.status === 200) {
-    alert(data.message);
-  
-    // Reimposta gli attributi e gli stili originali
-    document.getElementById(`question${id}`).contentEditable = "false";
-    document.getElementById(`editableHints${id}`).contentEditable = "false";
-    document.getElementById(`question${id}`).style.backgroundColor = "";
-    document.getElementById(`editableHints${id}`).style.backgroundColor = "";
-  
-    // Nascondi il campo di input per il caricamento dell'immagine e il bottone "Salva"
-    document.getElementById(`imageInput${id}`).style.display = "none";
-    document.getElementById(`saveButton${id}`).style.display = "none";
-  
-    // Resetta selectedFile a null
-    selectedFile = null;
+      // Funzione per salvare la domanda modificata
+      async function saveQuestion(id) {
+        // Ottieni il testo modificato della domanda e dei suggerimenti
+        const editedQuestion = document
+          .getElementById(`question${id}`)
+          .innerText.trim();
+        const editedHints = document
+          .getElementById(`editableHints${id}`)
+          .innerHTML.replace(/<br>/g, "\\n");
 
-    // Aggiorna la lista delle domande
-    getQuestions();
-  } else {
-    alert("Si è verificato un errore durante l'aggiornamento della domanda.");
-  }
-}
-     
+        // Crea un oggetto FormData per inviare sia il testo modificato che il file immagine
+        const formData = new FormData();
+        formData.append("question", editedQuestion);
+        formData.append("hints", editedHints);
+
+        if (selectedFile) {
+          formData.append("newImage", selectedFile);
+        }
+
+        // Invia i dati al backend per l'aggiornamento
+        const response = await fetch(`/update_question/${id}`, {
+          method: "POST",
+          body: formData,
+        });
+
+        const data = await response.json();
+
+        // Se un file è stato selezionato
+        if (selectedFile) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            // Aggiorna l'immagine principale
+            let imgElement = document.getElementById(`image${id}`);
+            if (!imgElement) {
+              imgElement = document.createElement("img");
+              imgElement.id = `image${id}`;
+              document.getElementById(`hints${id}`).appendChild(imgElement);
+            }
+            imgElement.src = e.target.result;
+
+            // Aggiorna l'immagine di anteprima
+            let previewElement = document.getElementById(`previewImage${id}`);
+            if (!previewElement) {
+              previewElement = document.createElement("img");
+              previewElement.id = `previewImage${id}`;
+              previewElement.className = "img-preview";
+              document.querySelector(`.card-id`).after(previewElement);
+            }
+            previewElement.src = e.target.result;
+          };
+
+          // Leggi il file immagine
+          reader.readAsDataURL(selectedFile);
+        }
+
+        // Se tutto va bene, ritorna alla modalità non modificabile
+        if (response.status === 200) {
+          alert(data.message);
+
+          // Reimposta gli attributi e gli stili originali
+          document.getElementById(`question${id}`).contentEditable = "false";
+          document.getElementById(`editableHints${id}`).contentEditable =
+            "false";
+          document.getElementById(`question${id}`).style.backgroundColor = "";
+          document.getElementById(`editableHints${id}`).style.backgroundColor =
+            "";
+
+          // Nascondi il campo di input per il caricamento dell'immagine e il bottone "Salva"
+          document.getElementById(`imageInput${id}`).style.display = "none";
+          document.getElementById(`saveButton${id}`).style.display = "none";
+
+          // Resetta selectedFile a null
+          selectedFile = null;
+
+          // Aggiorna la lista delle domande
+          getQuestions();
+        } else {
+          alert(
+            "Si è verificato un errore durante l'aggiornamento della domanda."
+          );
+        }
+      }
 
       async function resetSession() {
         const response = await fetch("/reset_session");
@@ -483,30 +494,35 @@ async function saveQuestion(id) {
         }
       }
 
-  // Quando il documento è completamente caricato
-  document.addEventListener("DOMContentLoaded", function () {
-    getQuestions(); // Carica tutte le domande
-    
-    // Aggiungi un listener al pulsante per aggiungere una domanda vuota
-    document.getElementById("addEmptyQuestionBtn").addEventListener("click", async function(event) {
-      event.preventDefault();  // Previeni il comportamento di default del link
-      const response = await fetch("/add_empty_question", {
-        method: "POST",
+      // Quando il documento è completamente caricato
+      document.addEventListener("DOMContentLoaded", function () {
+        getQuestions();
+
+        // Seleziona tutti i bottoni con la classe 'addEmptyQuestionBtn'
+        document.querySelectorAll(".addEmptyQuestionBtn").forEach((button) => {
+          button.addEventListener("click", async function (event) {
+            event.preventDefault();
+            const response = await fetch("/add_empty_question", {
+              method: "POST",
+            });
+
+            const data = await response.json();
+
+            if (response.status === 201) {
+              alert("Domanda vuota aggiunta con successo");
+              getQuestions();
+            } else {
+              alert(
+                "Si è verificato un errore nell'aggiunta della domanda vuota: " +
+                  data.message
+              );
+            }
+          });
+        });
+
+        const resetButton = document.getElementById("resetSessionButton");
+        resetButton.addEventListener("click", resetSession);
       });
-
-      const data = await response.json();  // Aggiunto: leggi la risposta del server
-
-      if (response.status === 201) {
-        alert("Domanda vuota aggiunta con successo");
-        getQuestions();  // Ricarica le domande
-      } else {
-        alert("Si è verificato un errore nell'aggiunta della domanda vuota: " + data.message);  // Modificato: mostra il messaggio di errore dal server
-      }
-    });
-
-    const resetButton = document.getElementById("resetSessionButton");
-    resetButton.addEventListener("click", resetSession);
-  });
     </script>
   </body>
 </html>
